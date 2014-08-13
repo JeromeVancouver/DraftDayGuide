@@ -94,7 +94,7 @@ namespace DraftDayGuide
         public static void LoadPlayers()
         {
             MySqlDataReader rdr = null;
-            string id = "";
+            int id = 0;
             string name = "";
             string age = "";
             int count = 0;
@@ -105,27 +105,122 @@ namespace DraftDayGuide
                 count = rdr.GetInt32(0);
             }
 
-            Globals.PLAYER_ARRAY = new string[count, 3];
+            Globals.PLAYER_ARRAY = new string[count+1, 9];
 
-            rdr = MysqlInterface.DoQuery("SELECT name, position, dob FROM player");
-            int i = 0;
+            rdr = MysqlInterface.DoQuery("SELECT id, name, position, dob, team, country, height, weight, shoot FROM player");
+
             while (rdr.Read())
             {
-                id = rdr.GetString(0);
-                Globals.PLAYER_ARRAY[i, 0] = id;
+                int i = 0;
+                id = rdr.GetInt32(i);
+                Globals.PLAYER_ARRAY[id, i++] = id.ToString();
 
-                name = rdr.GetString(1);
-                Globals.PLAYER_ARRAY[i, 1] = name;
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+                
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
 
-                age = rdr.GetString(2);
+                age = rdr.GetString(i);
                 string strage = age.Substring(8, age.Length - 8);
                 int nAge = 100 - Convert.ToInt32(strage) + 14;
-                Globals.PLAYER_ARRAY[i, 2] = nAge.ToString();
+                Globals.PLAYER_ARRAY[id, i++] = nAge.ToString();
+
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+                name = rdr.GetString(i);
+                Globals.PLAYER_ARRAY[id, i++] = name;
+
 
 
                 i++;
             }
         }
+
+        private static void EnterStat(string year, int index, int count, int value, bool nResult)
+        {
+            if (year == "stat2014")
+                Globals.STAT2014_ARRAY[index, count] = value;
+
+            if (nResult == true)
+            {
+                if(year == "stat2013")
+                    value = Globals.STAT2014_ARRAY[index, count];
+                if (year == "stat2012")
+                    value = Globals.STAT2013_ARRAY[index, count];
+                if (year == "stat2011")
+                    value = Globals.STAT2012_ARRAY[index, count];
+                if (year == "stat2010")
+                    value = Globals.STAT2011_ARRAY[index, count];
+                if (year == "stat2009")
+                    value = Globals.STAT2010_ARRAY[index, count];
+            }
+
+            if (year == "stat2013")
+                Globals.STAT2013_ARRAY[index, count] = value;
+            if (year == "stat2012")
+                Globals.STAT2012_ARRAY[index, count] = value;
+            if (year == "stat2011")
+                Globals.STAT2011_ARRAY[index, count] = value;
+            if (year == "stat2010")
+                Globals.STAT2010_ARRAY[index, count] = value;
+            if (year == "stat2009")
+                Globals.STAT2009_ARRAY[index, count] = value;
+        }
+
+        public static void LoadStats(string year)
+        {
+            MySqlDataReader rdr = null;
+            int count = 0;
+            int tempResult = -1;
+            int ID = 0;
+            rdr = MysqlInterface.DoQuery("SELECT count(name) FROM player;");
+
+            while (rdr.Read())
+            {
+                count = rdr.GetInt32(0);
+            }
+
+            if(year == "stat2014")
+                Globals.STAT2014_ARRAY = new int[count + 1, 11];
+            if (year == "stat2013")
+                Globals.STAT2013_ARRAY = new int[count + 1, 11];
+            if (year == "stat2012")
+                Globals.STAT2012_ARRAY = new int[count + 1, 11];
+            if (year == "stat2011")
+                Globals.STAT2011_ARRAY = new int[count + 1, 11];
+            if (year == "stat2010")
+                Globals.STAT2010_ARRAY = new int[count + 1, 11];
+            if (year == "stat2009")
+                Globals.STAT2009_ARRAY = new int[count + 1, 11];
+
+            rdr = MysqlInterface.DoQuery
+            ("select p.id, s.games, s.goals, s.assists, s.points, s.plusminus, s.ppg, s.ppp, s.shg, s.shp, s.gw, s.ot from player p left join " + year + " s on p.name = s.player;");
+            int i = 0;
+            bool nullResult;
+            while (rdr.Read())
+            {
+                ID = rdr.GetInt32(0);
+                for (int j = 0; j < 10; j++)
+                {
+                    nullResult = false;
+                    if (!rdr.IsDBNull(j + 1))
+                        tempResult = rdr.GetInt32(j + 1);
+                    else
+                        nullResult = true;
+                    EnterStat(year, ID, j, tempResult, nullResult);
+                }
+            }
+            int ti = 0;
+            ti++;
+        }
+
 
         public static void LoadContracts()
         {
@@ -199,11 +294,18 @@ namespace DraftDayGuide
         public static fmImport FM_IMPORT;
         public static fmMain FM_MAIN;
         public static fmPlayerLookup FM_LOOKUP;
+        public static fmSplash FM_SPLASH;
 
         public static string[,] PART_ARRAY;
-        public static string[,] CUSTOMER_ARRAY;
+        public static int[,] STAT2014_ARRAY;
+        public static int[,] STAT2013_ARRAY;
+        public static int[,] STAT2012_ARRAY;
+        public static int[,] STAT2011_ARRAY;
+        public static int[,] STAT2010_ARRAY;
+        public static int[,] STAT2009_ARRAY;
         public static string[,] PLAYER_ARRAY;
         public static string[] CONTRACT_ARRAY;
+        public static int[] WATCH_ARRAY;
 
     }
 }

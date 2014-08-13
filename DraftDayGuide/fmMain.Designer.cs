@@ -28,14 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmMain));
-            this.chLeft = new System.Windows.Forms.CheckBox();
-            this.chCenter = new System.Windows.Forms.CheckBox();
-            this.chDefense = new System.Windows.Forms.CheckBox();
-            this.chRight = new System.Windows.Forms.CheckBox();
-            this.chGoalie = new System.Windows.Forms.CheckBox();
-            this.btUpdate = new System.Windows.Forms.Button();
-            this.dgPlayer = new System.Windows.Forms.DataGridView();
             this.lbName = new System.Windows.Forms.Label();
             this.lbPos = new System.Windows.Forms.Label();
             this.lbTeam = new System.Windows.Forms.Label();
@@ -150,92 +144,33 @@
             this.lbTOTALAVG = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.lbSigned = new System.Windows.Forms.ListBox();
-            this.btSigned = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btRemove = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tbSearch = new System.Windows.Forms.TextBox();
+            this.btSigned = new System.Windows.Forms.Button();
+            this.dgPlayer = new System.Windows.Forms.DataGridView();
+            this.cmPlayer = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btUpdate = new System.Windows.Forms.Button();
+            this.chGoalie = new System.Windows.Forms.CheckBox();
+            this.chDefense = new System.Windows.Forms.CheckBox();
+            this.chRight = new System.Windows.Forms.CheckBox();
+            this.chCenter = new System.Windows.Forms.CheckBox();
+            this.chLeft = new System.Windows.Forms.CheckBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgWatch = new System.Windows.Forms.DataGridView();
+            this.cmWatch = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayer)).BeginInit();
+            this.cmPlayer.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgWatch)).BeginInit();
+            this.cmWatch.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // chLeft
-            // 
-            this.chLeft.AutoSize = true;
-            this.chLeft.Checked = true;
-            this.chLeft.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chLeft.Location = new System.Drawing.Point(13, 29);
-            this.chLeft.Name = "chLeft";
-            this.chLeft.Size = new System.Drawing.Size(72, 17);
-            this.chLeft.TabIndex = 0;
-            this.chLeft.Text = "Left Wing";
-            this.chLeft.UseVisualStyleBackColor = true;
-            // 
-            // chCenter
-            // 
-            this.chCenter.AutoSize = true;
-            this.chCenter.Checked = true;
-            this.chCenter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chCenter.Location = new System.Drawing.Point(91, 29);
-            this.chCenter.Name = "chCenter";
-            this.chCenter.Size = new System.Drawing.Size(57, 17);
-            this.chCenter.TabIndex = 1;
-            this.chCenter.Text = "Center";
-            this.chCenter.UseVisualStyleBackColor = true;
-            // 
-            // chDefense
-            // 
-            this.chDefense.AutoSize = true;
-            this.chDefense.Checked = true;
-            this.chDefense.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chDefense.Location = new System.Drawing.Point(239, 29);
-            this.chDefense.Name = "chDefense";
-            this.chDefense.Size = new System.Drawing.Size(66, 17);
-            this.chDefense.TabIndex = 3;
-            this.chDefense.Text = "Defense";
-            this.chDefense.UseVisualStyleBackColor = true;
-            // 
-            // chRight
-            // 
-            this.chRight.AutoSize = true;
-            this.chRight.Checked = true;
-            this.chRight.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chRight.Location = new System.Drawing.Point(154, 29);
-            this.chRight.Name = "chRight";
-            this.chRight.Size = new System.Drawing.Size(79, 17);
-            this.chRight.TabIndex = 2;
-            this.chRight.Text = "Right Wing";
-            this.chRight.UseVisualStyleBackColor = true;
-            // 
-            // chGoalie
-            // 
-            this.chGoalie.AutoSize = true;
-            this.chGoalie.Location = new System.Drawing.Point(311, 29);
-            this.chGoalie.Name = "chGoalie";
-            this.chGoalie.Size = new System.Drawing.Size(56, 17);
-            this.chGoalie.TabIndex = 4;
-            this.chGoalie.Text = "Goalie";
-            this.chGoalie.UseVisualStyleBackColor = true;
-            // 
-            // btUpdate
-            // 
-            this.btUpdate.Location = new System.Drawing.Point(373, 23);
-            this.btUpdate.Name = "btUpdate";
-            this.btUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btUpdate.TabIndex = 5;
-            this.btUpdate.Text = "Update";
-            this.btUpdate.UseVisualStyleBackColor = true;
-            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
-            // 
-            // dgPlayer
-            // 
-            this.dgPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlayer.Location = new System.Drawing.Point(13, 53);
-            this.dgPlayer.Name = "dgPlayer";
-            this.dgPlayer.Size = new System.Drawing.Size(1362, 476);
-            this.dgPlayer.StandardTab = true;
-            this.dgPlayer.TabIndex = 6;
-            this.dgPlayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPlayer_CellClick);
-            this.dgPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPlayer_KeyDown);
-            this.dgPlayer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgPlayer_KeyPress);
             // 
             // lbName
             // 
@@ -269,9 +204,9 @@
             this.lbDOB.AutoSize = true;
             this.lbDOB.Location = new System.Drawing.Point(34, 602);
             this.lbDOB.Name = "lbDOB";
-            this.lbDOB.Size = new System.Drawing.Size(33, 13);
+            this.lbDOB.Size = new System.Drawing.Size(32, 13);
             this.lbDOB.TabIndex = 10;
-            this.lbDOB.Text = "DOB:";
+            this.lbDOB.Text = "AGE:";
             // 
             // lbShoot
             // 
@@ -1276,16 +1211,6 @@
             this.lbSigned.Size = new System.Drawing.Size(196, 459);
             this.lbSigned.TabIndex = 121;
             // 
-            // btSigned
-            // 
-            this.btSigned.Location = new System.Drawing.Point(454, 23);
-            this.btSigned.Name = "btSigned";
-            this.btSigned.Size = new System.Drawing.Size(126, 23);
-            this.btSigned.TabIndex = 7;
-            this.btSigned.Text = "Add To Signed";
-            this.btSigned.UseVisualStyleBackColor = true;
-            this.btSigned.Click += new System.EventHandler(this.btSigned_Click);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -1306,23 +1231,193 @@
             this.btRemove.UseVisualStyleBackColor = true;
             this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(4, 1);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1371, 532);
+            this.tabControl1.TabIndex = 124;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tbSearch);
+            this.tabPage1.Controls.Add(this.btSigned);
+            this.tabPage1.Controls.Add(this.dgPlayer);
+            this.tabPage1.Controls.Add(this.btUpdate);
+            this.tabPage1.Controls.Add(this.chGoalie);
+            this.tabPage1.Controls.Add(this.chDefense);
+            this.tabPage1.Controls.Add(this.chRight);
+            this.tabPage1.Controls.Add(this.chCenter);
+            this.tabPage1.Controls.Add(this.chLeft);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1363, 506);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Stats";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(589, 27);
+            this.tbSearch.Location = new System.Drawing.Point(582, 5);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(238, 20);
-            this.tbSearch.TabIndex = 124;
+            this.tbSearch.TabIndex = 133;
             this.tbSearch.Leave += new System.EventHandler(this.tbSearch_Leave);
+            // 
+            // btSigned
+            // 
+            this.btSigned.Location = new System.Drawing.Point(447, 1);
+            this.btSigned.Name = "btSigned";
+            this.btSigned.Size = new System.Drawing.Size(126, 23);
+            this.btSigned.TabIndex = 132;
+            this.btSigned.Text = "Add To Signed";
+            this.btSigned.UseVisualStyleBackColor = true;
+            this.btSigned.Click += new System.EventHandler(this.btSigned_Click);
+            // 
+            // dgPlayer
+            // 
+            this.dgPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlayer.ContextMenuStrip = this.cmPlayer;
+            this.dgPlayer.Location = new System.Drawing.Point(6, 31);
+            this.dgPlayer.Name = "dgPlayer";
+            this.dgPlayer.Size = new System.Drawing.Size(1351, 469);
+            this.dgPlayer.StandardTab = true;
+            this.dgPlayer.TabIndex = 131;
+            this.dgPlayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPlayer_CellClick);
+            this.dgPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPlayer_KeyDown);
+            this.dgPlayer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgPlayer_KeyPress);
+            // 
+            // cmPlayer
+            // 
+            this.cmPlayer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToWatchToolStripMenuItem});
+            this.cmPlayer.Name = "cmPlayer";
+            this.cmPlayer.Size = new System.Drawing.Size(151, 26);
+            // 
+            // addToWatchToolStripMenuItem
+            // 
+            this.addToWatchToolStripMenuItem.Name = "addToWatchToolStripMenuItem";
+            this.addToWatchToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToWatchToolStripMenuItem.Text = "Add To Watch";
+            this.addToWatchToolStripMenuItem.Click += new System.EventHandler(this.addToWatchToolStripMenuItem_Click);
+            // 
+            // btUpdate
+            // 
+            this.btUpdate.Location = new System.Drawing.Point(366, 1);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btUpdate.TabIndex = 130;
+            this.btUpdate.Text = "Update";
+            this.btUpdate.UseVisualStyleBackColor = true;
+            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
+            // 
+            // chGoalie
+            // 
+            this.chGoalie.AutoSize = true;
+            this.chGoalie.Location = new System.Drawing.Point(304, 7);
+            this.chGoalie.Name = "chGoalie";
+            this.chGoalie.Size = new System.Drawing.Size(56, 17);
+            this.chGoalie.TabIndex = 129;
+            this.chGoalie.Text = "Goalie";
+            this.chGoalie.UseVisualStyleBackColor = true;
+            // 
+            // chDefense
+            // 
+            this.chDefense.AutoSize = true;
+            this.chDefense.Checked = true;
+            this.chDefense.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chDefense.Location = new System.Drawing.Point(232, 7);
+            this.chDefense.Name = "chDefense";
+            this.chDefense.Size = new System.Drawing.Size(66, 17);
+            this.chDefense.TabIndex = 128;
+            this.chDefense.Text = "Defense";
+            this.chDefense.UseVisualStyleBackColor = true;
+            // 
+            // chRight
+            // 
+            this.chRight.AutoSize = true;
+            this.chRight.Checked = true;
+            this.chRight.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chRight.Location = new System.Drawing.Point(147, 7);
+            this.chRight.Name = "chRight";
+            this.chRight.Size = new System.Drawing.Size(79, 17);
+            this.chRight.TabIndex = 127;
+            this.chRight.Text = "Right Wing";
+            this.chRight.UseVisualStyleBackColor = true;
+            // 
+            // chCenter
+            // 
+            this.chCenter.AutoSize = true;
+            this.chCenter.Checked = true;
+            this.chCenter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chCenter.Location = new System.Drawing.Point(84, 7);
+            this.chCenter.Name = "chCenter";
+            this.chCenter.Size = new System.Drawing.Size(57, 17);
+            this.chCenter.TabIndex = 126;
+            this.chCenter.Text = "Center";
+            this.chCenter.UseVisualStyleBackColor = true;
+            // 
+            // chLeft
+            // 
+            this.chLeft.AutoSize = true;
+            this.chLeft.Checked = true;
+            this.chLeft.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chLeft.Location = new System.Drawing.Point(6, 7);
+            this.chLeft.Name = "chLeft";
+            this.chLeft.Size = new System.Drawing.Size(72, 17);
+            this.chLeft.TabIndex = 125;
+            this.chLeft.Text = "Left Wing";
+            this.chLeft.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dgWatch);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1363, 506);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Watch";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgWatch
+            // 
+            this.dgWatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgWatch.ContextMenuStrip = this.cmWatch;
+            this.dgWatch.Location = new System.Drawing.Point(7, 4);
+            this.dgWatch.Name = "dgWatch";
+            this.dgWatch.Size = new System.Drawing.Size(1350, 496);
+            this.dgWatch.TabIndex = 0;
+            this.dgWatch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgWatch_CellClick);
+            this.dgWatch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgWatch_KeyDown);
+            // 
+            // cmWatch
+            // 
+            this.cmWatch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem});
+            this.cmWatch.Name = "cmWatch";
+            this.cmWatch.Size = new System.Drawing.Size(118, 26);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 862);
-            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btRemove);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.btSigned);
             this.Controls.Add(this.lbSigned);
             this.Controls.Add(this.lbTOTAL2009);
             this.Controls.Add(this.lbTOTAL2010);
@@ -1437,19 +1532,19 @@
             this.Controls.Add(this.lbDOB);
             this.Controls.Add(this.lbPos);
             this.Controls.Add(this.lbName);
-            this.Controls.Add(this.dgPlayer);
-            this.Controls.Add(this.btUpdate);
-            this.Controls.Add(this.chGoalie);
-            this.Controls.Add(this.chDefense);
-            this.Controls.Add(this.chRight);
-            this.Controls.Add(this.chCenter);
-            this.Controls.Add(this.chLeft);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
-            this.Text = "Draft Buddy";
+            this.Text = "Draft Day Guide";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.fmMain_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayer)).EndInit();
+            this.cmPlayer.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgWatch)).EndInit();
+            this.cmWatch.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1457,13 +1552,6 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox chLeft;
-        private System.Windows.Forms.CheckBox chCenter;
-        private System.Windows.Forms.CheckBox chDefense;
-        private System.Windows.Forms.CheckBox chRight;
-        private System.Windows.Forms.CheckBox chGoalie;
-        private System.Windows.Forms.Button btUpdate;
-        private System.Windows.Forms.DataGridView dgPlayer;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbPos;
         private System.Windows.Forms.Label lbTeam;
@@ -1578,10 +1666,25 @@
         private System.Windows.Forms.Label lbTOTALAVG;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ListBox lbSigned;
-        private System.Windows.Forms.Button btSigned;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btRemove;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.Button btSigned;
+        private System.Windows.Forms.DataGridView dgPlayer;
+        private System.Windows.Forms.Button btUpdate;
+        private System.Windows.Forms.CheckBox chGoalie;
+        private System.Windows.Forms.CheckBox chDefense;
+        private System.Windows.Forms.CheckBox chRight;
+        private System.Windows.Forms.CheckBox chCenter;
+        private System.Windows.Forms.CheckBox chLeft;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dgWatch;
+        private System.Windows.Forms.ContextMenuStrip cmPlayer;
+        private System.Windows.Forms.ToolStripMenuItem addToWatchToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip cmWatch;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 

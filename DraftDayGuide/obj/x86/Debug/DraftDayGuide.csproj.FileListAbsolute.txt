@@ -9,3 +9,4 @@ C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x
 C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Debug\DraftDayGuide.fmImport.resources
 C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Debug\DraftDayGuide.csprojResolveAssemblyReference.cache
 C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Debug\DraftDayGuide.fmPlayerLookup.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Debug\DraftDayGuide.fmSplash.resources

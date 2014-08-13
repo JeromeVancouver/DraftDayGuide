@@ -12,7 +12,6 @@ namespace DraftDayGuide
 {
     public partial class fmPlayerLookup : Form
     {
-        private string parent;
         private string part;
 
         public fmPlayerLookup()
@@ -58,14 +57,14 @@ namespace DraftDayGuide
             string p;
             string d;
             count = Globals.PLAYER_ARRAY.GetLength(0);
-            for (int i = 0; i < count; i++)
+            for (int i = 1; i <= count; i++)
             {
-                p = Globals.PLAYER_ARRAY[i, 0];
+                p = Globals.PLAYER_ARRAY[i, 1];
                 int result = 0;
                 result = p.IndexOf(part, 0);
                 if (result >= 0)
                 {
-                    d = Globals.PLAYER_ARRAY[i, 1];
+                    d = Globals.PLAYER_ARRAY[i, 2];
                     string[] row = { p, d };
                     dgPart.Rows.Add(row);
                 }
@@ -79,6 +78,7 @@ namespace DraftDayGuide
             int c = 0;
             int r = e.RowIndex;
             string p = dgPart.Rows[r].Cells[c].Value.ToString();
+            Globals.FM_MAIN.UpdateCellSelected(p);
             Globals.FM_MAIN.UpdatePlayerInfo(p);
             Close();
         }

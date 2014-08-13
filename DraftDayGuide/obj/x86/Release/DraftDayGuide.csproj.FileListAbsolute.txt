@@ -1,0 +1,12 @@
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\bin\Release\DraftDayGuide.exe
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\bin\Release\DraftDayGuide.pdb
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\bin\Release\MySql.Data.dll
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.csprojResolveAssemblyReference.cache
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.fmImport.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.fmMain.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.fmPlayerLookup.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.fmSplash.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.Properties.Resources.resources
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.csproj.GenerateResource.Cache
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.exe
+C:\Users\Jeremy\Documents\GitHub\DraftDayGuide\DraftDayGuide\DraftDayGuide\obj\x86\Release\DraftDayGuide.pdb

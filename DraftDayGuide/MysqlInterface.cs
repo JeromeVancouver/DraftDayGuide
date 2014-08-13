@@ -15,13 +15,8 @@ namespace DraftDayGuide
         //private static Microsoft.Office.Interop.Excel.ApplicationClass appExcel;
         private static  MySqlConnection con = null;
         private static MySqlDataReader reader = null;
-        
-        
-        public static string host = "localhost";
-        public static string user = "root";
-        public static string password = "";
-        public static string dbase = "DraftDay";
-        
+
+
 
         public static void SetConnectionInformation(string h, string u, string p, string d)
         {
