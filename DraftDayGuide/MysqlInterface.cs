@@ -17,10 +17,6 @@ namespace DraftDayGuide
         private static MySqlDataReader reader = null;
 
 
-        public static string host = "sql3.freemysqlhosting.net";
-        public static string user = "sql349366";
-        public static string password = "aY9*bQ2%";
-        public static string dbase = "sql349366";
         
 
 
