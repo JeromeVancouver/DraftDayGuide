@@ -151,9 +151,9 @@ namespace DraftDayGuide
             if (nResult == true)
             {
                 if(year == "stat2013")
-                    value = Globals.STAT2014_ARRAY[index, count];
+                    value = Convert.ToInt32(Globals.STAT2014_ARRAY[index, count] / 1.7);
                 if (year == "stat2012")
-                    value = Globals.STAT2013_ARRAY[index, count];
+                    value = Convert.ToInt32(Globals.STAT2013_ARRAY[index, count] * 1.7);
                 if (year == "stat2011")
                     value = Globals.STAT2012_ARRAY[index, count];
                 if (year == "stat2010")
