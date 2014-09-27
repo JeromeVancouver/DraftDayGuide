@@ -56,7 +56,7 @@ namespace DraftDayGuide
             int count = 0;
             string p;
             string d;
-            count = Globals.PLAYER_ARRAY.GetLength(0);
+            count = Globals.PLAYER_ARRAY.GetLength(0)-1;
             for (int i = 1; i <= count; i++)
             {
                 p = Globals.PLAYER_ARRAY[i, 1];

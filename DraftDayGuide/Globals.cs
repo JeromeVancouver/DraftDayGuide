@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace DraftDayGuide
 {
@@ -90,160 +95,466 @@ namespace DraftDayGuide
             return tId;
         }
 
-
         public static void LoadPlayers()
         {
-            MySqlDataReader rdr = null;
-            int id = 0;
-            string name = "";
-            string age = "";
-            int count = 0;
-            rdr = MysqlInterface.DoQuery("SELECT count(name) FROM player");
+            xlInterface.init("player.xls");
+            string[] cName;
 
-            while (rdr.Read())
+            string table = "Sheet1$";
+            string qry = "SELECT * FROM " + "[" + table + "];";
+            DataTable dt = xlInterface.DoQuery(qry);
+            cName = new string[dt.Columns.Count];
+            int i = 0;
+            foreach (DataColumn c in dt.Columns)
             {
-                count = rdr.GetInt32(0);
+                cName[i++] = c.ColumnName;
             }
 
-            Globals.PLAYER_ARRAY = new string[count+1, 9];
 
-            rdr = MysqlInterface.DoQuery("SELECT id, name, position, dob, team, country, height, weight, shoot FROM player");
+            string sString;
+            xlList = new List<xlData>();
 
-            while (rdr.Read())
+            int rows = cName.Length + 1;
+
+            sString = "select ";
+            for (i = 0; i < rows - 1; i++)
             {
-                int i = 0;
-                id = rdr.GetInt32(i);
-                Globals.PLAYER_ARRAY[id, i++] = id.ToString();
+                if (i > 0)
+                    sString += ", ";
+                xlData id = new xlData();
+                id.ID = cName[i];
+                xlList.Add(id);
+                sString += cName[i];
+                sString += " ";
 
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-                
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-
-                age = rdr.GetString(i);
-                string strage = age.Substring(8, age.Length - 8);
-                int nAge = 100 - Convert.ToInt32(strage) + 14;
-                Globals.PLAYER_ARRAY[id, i++] = nAge.ToString();
-
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-                name = rdr.GetString(i);
-                Globals.PLAYER_ARRAY[id, i++] = name;
-
-
-
-                i++;
-            }
-        }
-
-        private static void EnterStat(string year, int index, int count, int value, bool nResult)
-        {
-            if (year == "stat2014")
-                Globals.STAT2014_ARRAY[index, count] = value;
-
-            if (nResult == true)
-            {
-                if(year == "stat2013")
-                    value = Convert.ToInt32(Globals.STAT2014_ARRAY[index, count] / 1.7);
-                if (year == "stat2012")
-                    value = Convert.ToInt32(Globals.STAT2013_ARRAY[index, count] * 1.7);
-                if (year == "stat2011")
-                    value = Globals.STAT2012_ARRAY[index, count];
-                if (year == "stat2010")
-                    value = Globals.STAT2011_ARRAY[index, count];
-                if (year == "stat2009")
-                    value = Globals.STAT2010_ARRAY[index, count];
             }
 
-            if (year == "stat2013")
-                Globals.STAT2013_ARRAY[index, count] = value;
-            if (year == "stat2012")
-                Globals.STAT2012_ARRAY[index, count] = value;
-            if (year == "stat2011")
-                Globals.STAT2011_ARRAY[index, count] = value;
-            if (year == "stat2010")
-                Globals.STAT2010_ARRAY[index, count] = value;
-            if (year == "stat2009")
-                Globals.STAT2009_ARRAY[index, count] = value;
+            sString += " from [Sheet1$];";
+            //dt = xlInterface.DoQuery(sString);
+            int lSize = dt.Rows.Count;
+            Globals.PLAYER_ARRAY = new string[lSize, 9];
+            string pid = "";
+            int pi = 0;
+            foreach (DataRow drow in dt.Rows)
+            {
+                for (int j = 0; j < xlList.Count; j++)
+                {
+                    pid = drow[xlList[j].ID].ToString();
+                    Globals.PLAYER_ARRAY[pi, j] = pid;
+                }
+
+                pi++;
+            }
+
         }
 
         public static void LoadStats(string year)
         {
-            MySqlDataReader rdr = null;
-            int count = 0;
-            int tempResult = -1;
-            int ID = 0;
-            rdr = MysqlInterface.DoQuery("SELECT count(name) FROM player;");
-
-            while (rdr.Read())
+            xlInterface.init("stat2014.xls");
+            int pi;
+            xlList = new List<xlData>();
+            string sString = "";
+            int pCount = Globals.PLAYER_ARRAY.GetLength(0);
+            Globals.STAT2014_ARRAY = new int[pCount, 11];
+            for (int pc = 0; pc < pCount; pc++)
             {
-                count = rdr.GetInt32(0);
-            }
-
-            if(year == "stat2014")
-                Globals.STAT2014_ARRAY = new int[count + 1, 11];
-            if (year == "stat2013")
-                Globals.STAT2013_ARRAY = new int[count + 1, 11];
-            if (year == "stat2012")
-                Globals.STAT2012_ARRAY = new int[count + 1, 11];
-            if (year == "stat2011")
-                Globals.STAT2011_ARRAY = new int[count + 1, 11];
-            if (year == "stat2010")
-                Globals.STAT2010_ARRAY = new int[count + 1, 11];
-            if (year == "stat2009")
-                Globals.STAT2009_ARRAY = new int[count + 1, 11];
-
-            rdr = MysqlInterface.DoQuery
-            ("select p.id, s.games, s.goals, s.assists, s.points, s.plusminus, s.ppg, s.ppp, s.shg, s.shp, s.gw, s.ot from player p left join " + year + " s on p.name = s.player;");
-            int i = 0;
-            bool nullResult;
-            while (rdr.Read())
-            {
-                ID = rdr.GetInt32(0);
-                for (int j = 0; j < 10; j++)
+                sString = "select * from [Sheet1$] where player = '";
+                sString += Globals.PLAYER_ARRAY[pc, 1];
+                sString += "'";
+                DataTable dp = xlInterface.DoQuery(sString);
+                int tempid = 0;
+                pi = 0;
+                foreach (DataRow drow in dp.Rows)
                 {
-                    nullResult = false;
-                    if (!rdr.IsDBNull(j + 1))
-                        tempResult = rdr.GetInt32(j + 1);
-                    else
-                        nullResult = true;
-                    EnterStat(year, ID, j, tempResult, nullResult);
+
+                    tempid = Convert.ToInt32(drow["games"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["goals"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["assists"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["points"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["ppg"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["ppp"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["shg"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["shp"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["gw"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                    tempid = Convert.ToInt32(drow["ot"].ToString());
+                    Globals.STAT2014_ARRAY[pc, pi++] = tempid;
+                }
+                Globals.FM_SPLASH.ChangeText("Loading: 2013 Stats . . . ");
+                xlInterface.init("stat2013.xls");
+
+                xlList = new List<xlData>();
+
+                Globals.STAT2013_ARRAY = new int[pCount, 11];
+                for (pc = 0; pc < pCount; pc++)
+                {
+                    sString = "select * from [Sheet1$] where player = '";
+                    sString += Globals.PLAYER_ARRAY[pc, 1];
+                    sString += "'";
+                    dp = xlInterface.DoQuery(sString);
+                    tempid = 0;
+                    pi = 0;
+                    foreach (DataRow drow in dp.Rows)
+                    {
+
+                        tempid = Convert.ToInt32(drow["games"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["goals"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["assists"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["points"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppg"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppp"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shg"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shp"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["gw"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ot"].ToString());
+                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                    }
+                }
+                Globals.FM_SPLASH.ChangeText("Loading: 2012 Stats . . . ");
+                xlInterface.init("stat2012.xls");
+
+                xlList = new List<xlData>();
+
+                Globals.STAT2012_ARRAY = new int[pCount, 11];
+                for (pc = 0; pc < pCount; pc++)
+                {
+                    sString = "select * from [Sheet1$] where player = '";
+                    sString += Globals.PLAYER_ARRAY[pc, 1];
+                    sString += "'";
+                    dp = xlInterface.DoQuery(sString);
+                    tempid = 0;
+                    pi = 0;
+                    foreach (DataRow drow in dp.Rows)
+                    {
+
+                        tempid = Convert.ToInt32(drow["games"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["goals"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["assists"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["points"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppg"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppp"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shg"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shp"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["gw"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ot"].ToString());
+                        Globals.STAT2012_ARRAY[pc, pi++] = tempid;
+                    }
+                }
+
+                Globals.FM_SPLASH.ChangeText("Loading: 2011 Stats . . . ");
+                xlInterface.init("stat2011.xls");
+
+                xlList = new List<xlData>();
+
+                Globals.STAT2011_ARRAY = new int[pCount, 11];
+                for (pc = 0; pc < pCount; pc++)
+                {
+                    sString = "select * from [Sheet1$] where player = '";
+                    sString += Globals.PLAYER_ARRAY[pc, 1];
+                    sString += "'";
+                    dp = xlInterface.DoQuery(sString);
+                    tempid = 0;
+                    pi = 0;
+                    foreach (DataRow drow in dp.Rows)
+                    {
+
+                        tempid = Convert.ToInt32(drow["games"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["goals"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["assists"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["points"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppg"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppp"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shg"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shp"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["gw"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ot"].ToString());
+                        Globals.STAT2011_ARRAY[pc, pi++] = tempid;
+                    }
+                }
+                Globals.FM_SPLASH.ChangeText("Loading: 2010 Stats . . . ");
+                xlInterface.init("stat2010.xls");
+
+                xlList = new List<xlData>();
+
+                Globals.STAT2010_ARRAY = new int[pCount, 11];
+                for (pc = 0; pc < pCount; pc++)
+                {
+                    sString = "select * from [Sheet1$] where player = '";
+                    sString += Globals.PLAYER_ARRAY[pc, 1];
+                    sString += "'";
+                    dp = xlInterface.DoQuery(sString);
+                    tempid = 0;
+                    pi = 0;
+                    foreach (DataRow drow in dp.Rows)
+                    {
+
+                        tempid = Convert.ToInt32(drow["games"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["goals"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["assists"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["points"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppg"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppp"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shg"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shp"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["gw"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ot"].ToString());
+                        Globals.STAT2010_ARRAY[pc, pi++] = tempid;
+                    }
+                }
+                Globals.FM_SPLASH.ChangeText("Loading: 2009 Stats . . . ");
+                xlInterface.init("stat2009.xls");
+
+                xlList = new List<xlData>();
+
+                Globals.STAT2009_ARRAY = new int[pCount, 11];
+                for (pc = 0; pc < pCount; pc++)
+                {
+                    sString = "select * from [Sheet1$] where player = '";
+                    sString += Globals.PLAYER_ARRAY[pc, 1];
+                    sString += "'";
+                    dp = xlInterface.DoQuery(sString);
+                    tempid = 0;
+                    pi = 0;
+                    foreach (DataRow drow in dp.Rows)
+                    {
+
+                        tempid = Convert.ToInt32(drow["games"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["goals"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["assists"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["points"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["plusminus"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppg"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ppp"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shg"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["shp"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["gw"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                        tempid = Convert.ToInt32(drow["ot"].ToString());
+                        Globals.STAT2009_ARRAY[pc, pi++] = tempid;
+                    }
                 }
             }
-            int ti = 0;
-            ti++;
+
+
         }
 
 
+        static List<xlData> xlList;
+
         public static void LoadContracts()
         {
-            MySqlDataReader rdr = null;
-            string id = "";
-            string name = "";
-            int count = 0;
-            rdr = MysqlInterface.DoQuery("SELECT count(name) FROM contract2014");
 
-            while (rdr.Read())
+            xlInterface.init("contract.xls");
+            string cName = "";
+            string table = "Sheet1$";
+            string qry = "SELECT * FROM " + "[" + table + "];";
+            DataTable dt = xlInterface.DoQuery(qry);
+            foreach (DataColumn c in dt.Columns)
             {
-                count = rdr.GetInt32(0);
+                cName = c.ColumnName;
             }
 
-            Globals.CONTRACT_ARRAY = new string[count];
 
-            rdr = MysqlInterface.DoQuery("SELECT name FROM contract2014");
-            int i = 0;
-            while (rdr.Read())
+            string sString;
+            xlList = new List<xlData>();
+
+            int rows = 2;
+
+            sString = "select ";
+            for (int i = 0; i < rows - 1; i++)
             {
-                id = rdr.GetString(0);
-                Globals.CONTRACT_ARRAY[i] = id;
-                i++;
+                if (i > 0)
+                    sString += ", ";
+                xlData id = new xlData();
+                id.ID = cName;
+                xlList.Add(id);
+                sString += cName;
+                sString += " ";
+
+            }
+
+            sString += " from [Sheet1$];";
+            dt = xlInterface.DoQuery(sString);
+            int lSize = dt.Rows.Count;
+            Globals.CONTRACT_ARRAY = new string[lSize];
+            string pid = "";
+            int pi = 0;
+            foreach (DataRow drow in dt.Rows)
+            {
+                for (int j = 0; j < xlList.Count; j++)
+                {
+                    pid = drow[xlList[j].ID].ToString();
+                    Globals.CONTRACT_ARRAY[pi] = pid;
+                    pi++;
+                }
+            }
+        }
+
+
+        public static void btImport_Click()
+        {
+
+        }
+
+        public static void LoadSportsnet()
+        {
+
+            xlInterface.init("sportsnet.xls");
+            string[] cName;
+            
+            string table = "Sheet1$";
+            string qry = "SELECT * FROM " + "[" + table + "];";
+            DataTable dt = xlInterface.DoQuery(qry);
+            cName = new string[dt.Columns.Count];
+            int i = 0;
+            foreach (DataColumn c in dt.Columns)
+            {
+                cName[i++] = c.ColumnName;
+            }
+
+
+            string sString;
+            xlList = new List<xlData>();
+
+            int rows = cName.Length + 1;
+
+            sString = "select ";
+            for (i = 0; i < rows - 1; i++)
+            {
+                if (i > 0)
+                    sString += ", ";
+                xlData id = new xlData();
+                id.ID = cName[i];
+                xlList.Add(id);
+                sString += cName[i];
+                sString += " ";
+
+            }
+
+            sString += " from [Sheet1$];";
+            dt = xlInterface.DoQuery(sString);
+            int lSize = dt.Rows.Count;
+            Globals.SPORTSNET_ARRAY = new string[lSize, 2];
+            string pid = "";
+            int pi = 0;
+            foreach (DataRow drow in dt.Rows)
+            {
+                for (int j = 0; j < xlList.Count; j++)
+                {
+                    pid = drow[xlList[j].ID].ToString();
+                    Globals.SPORTSNET_ARRAY[pi, j] = pid; 
+                }
+
+                pi++;
+            }
+
+            xlInterface.init("injury.xls");
+
+            table = "Sheet1$";
+            qry = "SELECT * FROM " + "[" + table + "];";
+            dt = xlInterface.DoQuery(qry);
+            cName = new string[dt.Columns.Count];
+            i = 0;
+            foreach (DataColumn c in dt.Columns)
+            {
+                cName[i++] = c.ColumnName;
+            }
+
+            xlList = new List<xlData>();
+
+            rows = cName.Length + 1;
+
+            sString = "select ";
+            for (i = 0; i < rows - 1; i++)
+            {
+                if (i > 0)
+                    sString += ", ";
+                xlData id = new xlData();
+                id.ID = cName[i];
+                xlList.Add(id);
+                sString += cName[i];
+                sString += " ";
+
+            }
+
+            sString += " from [Sheet1$];";
+            dt = xlInterface.DoQuery(sString);
+            lSize = dt.Rows.Count;
+            Globals.INJURY_ARRAY = new string[lSize, 2];
+            pid = "";
+            pi = 0;
+            foreach (DataRow drow in dt.Rows)
+            {
+                for (int j = 0; j < xlList.Count; j++)
+                {
+                    pid = drow[xlList[j].ID].ToString();
+                    Globals.INJURY_ARRAY[pi, j] = pid;
+                }
+
+                pi++;
             }
         }
 
@@ -304,7 +615,10 @@ namespace DraftDayGuide
         public static int[,] STAT2010_ARRAY;
         public static int[,] STAT2009_ARRAY;
         public static string[,] PLAYER_ARRAY;
+        public static string[,] INJURY_ARRAY;
         public static string[] CONTRACT_ARRAY;
+        public static string[,] SPORTSNET_ARRAY;
+        public static string[] FAKEHOCKEY_ARRAY;
         public static int[] WATCH_ARRAY;
 
     }

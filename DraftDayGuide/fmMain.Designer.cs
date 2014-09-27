@@ -1263,7 +1263,7 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(582, 5);
+            this.tbSearch.Location = new System.Drawing.Point(579, 0);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(238, 20);
             this.tbSearch.TabIndex = 133;
@@ -1532,8 +1532,11 @@
             this.Controls.Add(this.lbDOB);
             this.Controls.Add(this.lbPos);
             this.Controls.Add(this.lbName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "fmMain";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Draft Day Guide";
             this.Load += new System.EventHandler(this.fmMain_Load);
             this.tabControl1.ResumeLayout(false);

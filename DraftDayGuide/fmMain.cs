@@ -21,6 +21,7 @@ namespace DraftDayGuide
         public fmMain()
         {
             InitializeComponent();
+
         }
 
         public void ClearPartGrid()
@@ -153,18 +154,10 @@ namespace DraftDayGuide
             Globals.LoadPlayers();
             Globals.FM_SPLASH.ChangeText("Loading: Contracts . . . ");
             Globals.LoadContracts();
+            Globals.FM_SPLASH.ChangeText("Loading: Sportsnet Predictions . . . ");
+            Globals.LoadSportsnet();
             Globals.FM_SPLASH.ChangeText("Loading: 2014 Stats . . . ");
             Globals.LoadStats("stat2014");
-            Globals.FM_SPLASH.ChangeText("Loading: 2013 Stats . . . ");
-            Globals.LoadStats("stat2013");
-            Globals.FM_SPLASH.ChangeText("Loading: 2012 Stats . . . ");
-            Globals.LoadStats("stat2012");
-            Globals.FM_SPLASH.ChangeText("Loading: 2011 Stats . . . ");
-            Globals.LoadStats("stat2011");
-            Globals.FM_SPLASH.ChangeText("Loading: 2010 Stats . . . ");
-            Globals.LoadStats("stat2010");
-            Globals.FM_SPLASH.ChangeText("Loading: 2009 Stats . . . ");
-            Globals.LoadStats("stat2009");
 
             Globals.FM_SPLASH.Hide();
 
@@ -251,6 +244,60 @@ namespace DraftDayGuide
             return false;
         }
 
+        private string CurrentSportsnet(string pName)
+        {
+            int count = Globals.SPORTSNET_ARRAY.GetLength(0);
+            for (int i = 0; i < count; i++)
+            {
+                if (Globals.SPORTSNET_ARRAY[i, 0] == pName)
+                    return Globals.SPORTSNET_ARRAY[i, 1];
+            }
+            return "";
+        }
+
+        private int CurrentFakeHockey(string pName)
+        {
+            int count = Globals.FAKEHOCKEY_ARRAY.Length;
+            for (int i = 0; i < count; i++)
+            {
+                if (Globals.FAKEHOCKEY_ARRAY[i] == pName)
+                    return 1;
+            }
+            return 0;
+        }
+
+        private string CurrentInjury(string pName)
+        {
+            int count = Globals.INJURY_ARRAY.GetLength(0);
+            for (int i = 0; i < count; i++)
+            {
+                if (Globals.INJURY_ARRAY[i, 0] == pName)
+                    return Globals.INJURY_ARRAY[i, 1];
+            }
+            return "";
+        }
+
+        private string addLineBreaks(string s, int n)
+        {
+            char t = ' ';
+            int count = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == t)
+                {
+                    count++;
+                    if (count == n)
+                    {
+                        StringBuilder sb = new StringBuilder(s);
+                        sb[i] = '\n';
+                        s = sb.ToString();
+                        return addLineBreaks(s, n+10);
+                    }
+                }
+            }
+            return s;
+        }
+
         private void btUpdate_Click(object sender, EventArgs e)
         {
 
@@ -290,7 +337,7 @@ namespace DraftDayGuide
             string a;
             int id;
             count = Globals.PLAYER_ARRAY.GetLength(0);
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count-1; i++)
             {
                 id = Convert.ToInt32(Globals.PLAYER_ARRAY[i, 0]);
                 p = Globals.PLAYER_ARRAY[i, 1];
@@ -324,12 +371,32 @@ namespace DraftDayGuide
                                    Convert.ToString(avgppp), Convert.ToString(avgshg), Convert.ToString(avgsha), 
                                    Convert.ToString(avggw), Convert.ToString(avgot)};
                     dgPlayer.Rows.Add(row);
+                    int r = dgPlayer.RowCount - 2;
+                    Color c = Color.White;
 
-                    if (CurrentContract(p))
+                    string listedInfo = "";
+                    string tTip = "";
+                    listedInfo = CurrentSportsnet(p);
+                    
+                    if (listedInfo != "")
                     {
-                        int r = dgPlayer.RowCount-2;
-                        dgPlayer[0, r].Style.BackColor = Color.LightGreen;
+                        listedInfo = "Sportsnet: \n\n" + listedInfo;
+                        listedInfo = addLineBreaks(listedInfo, 10);
+                        Font nf = new Font("Ariel", 8, FontStyle.Bold);
+                        dgPlayer[0, r].Style.Font = nf;
+                        tTip += listedInfo;
+                        tTip += "\n";
                     }
+                    string injuryInfo = "";
+                    injuryInfo = CurrentInjury(p);
+                    tTip += injuryInfo;
+                    dgPlayer[0, r].ToolTipText = tTip;
+                    if (CurrentContract(p))
+                        c = Color.GreenYellow;
+                    if (injuryInfo != "")
+                        c = Color.Tomato;
+
+                    dgPlayer[0, r].Style.BackColor = c;
                 }
 
             }
@@ -741,11 +808,35 @@ namespace DraftDayGuide
                             dgPlayer[i++, index].Value.ToString()};
             dgWatch.Rows.Add(row);
 
-            if (CurrentContract(dgPlayer[0, index].Value.ToString()))
+            int r = dgWatch.RowCount - 2;
+            string p = dgWatch[0, r].Value.ToString();
+
+
+            Color c = Color.White;
+
+            string listedInfo = "";
+            string tTip = "";
+            listedInfo = CurrentSportsnet(p);
+
+            if (listedInfo != "")
             {
-                int r = dgWatch.RowCount - 2;
-                dgWatch[0, r].Style.BackColor = Color.LightGreen;
-            }            
+                listedInfo = "Sportsnet: \n\n" + listedInfo;
+                listedInfo = addLineBreaks(listedInfo, 10);
+                Font nf = new Font("Ariel", 8, FontStyle.Bold);
+                dgWatch[0, r].Style.Font = nf;
+                tTip += listedInfo;
+                tTip += "\n";
+            }
+            string injuryInfo = "";
+            injuryInfo = CurrentInjury(p);
+            tTip += injuryInfo;
+            dgWatch[0, r].ToolTipText = tTip;
+            if (CurrentContract(p))
+                c = Color.GreenYellow;
+            if (injuryInfo != "")
+                c = Color.Tomato;
+
+            dgWatch[0, r].Style.BackColor = c;
         }
 
 
@@ -810,6 +901,10 @@ namespace DraftDayGuide
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Globals.btImport_Click();
+        }
 
     }
 }
