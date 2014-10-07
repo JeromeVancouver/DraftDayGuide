@@ -39,17 +39,17 @@
             this.lbHeight = new System.Windows.Forms.Label();
             this.lbCountry = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbGP = new System.Windows.Forms.Label();
+            this.lbGOALS = new System.Windows.Forms.Label();
+            this.lbASSISTS = new System.Windows.Forms.Label();
+            this.lbPOINTS = new System.Windows.Forms.Label();
+            this.lbPM = new System.Windows.Forms.Label();
+            this.lbPPG = new System.Windows.Forms.Label();
+            this.lbPPP = new System.Windows.Forms.Label();
+            this.lbSHG = new System.Windows.Forms.Label();
+            this.lbSHA = new System.Windows.Forms.Label();
+            this.lbOT = new System.Windows.Forms.Label();
+            this.lbGW = new System.Windows.Forms.Label();
             this.lbGPAVG = new System.Windows.Forms.Label();
             this.lbGP2014 = new System.Windows.Forms.Label();
             this.lbGP2013 = new System.Windows.Forms.Label();
@@ -134,7 +134,7 @@
             this.lbPPA2013 = new System.Windows.Forms.Label();
             this.lbPPA2014 = new System.Windows.Forms.Label();
             this.lbPPAAVG = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lbPPA = new System.Windows.Forms.Label();
             this.lbTOTAL2009 = new System.Windows.Forms.Label();
             this.lbTOTAL2010 = new System.Windows.Forms.Label();
             this.lbTOTAL2011 = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@
             this.lbTOTAL2013 = new System.Windows.Forms.Label();
             this.lbTOTAL2014 = new System.Windows.Forms.Label();
             this.lbTOTALAVG = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lbTOTAL = new System.Windows.Forms.Label();
             this.lbSigned = new System.Windows.Forms.ListBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btRemove = new System.Windows.Forms.Button();
@@ -154,7 +154,6 @@
             this.cmPlayer = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btUpdate = new System.Windows.Forms.Button();
-            this.chGoalie = new System.Windows.Forms.CheckBox();
             this.chDefense = new System.Windows.Forms.CheckBox();
             this.chRight = new System.Windows.Forms.CheckBox();
             this.chCenter = new System.Windows.Forms.CheckBox();
@@ -163,6 +162,8 @@
             this.dgWatch = new System.Windows.Forms.DataGridView();
             this.cmWatch = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rbPlayer = new System.Windows.Forms.RadioButton();
+            this.rbGoalie = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayer)).BeginInit();
@@ -254,115 +255,115 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "PLAYER INFORMATION";
             // 
-            // label2
+            // lbGP
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(181, 513);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "GAMES PLAYED";
+            this.lbGP.AutoSize = true;
+            this.lbGP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGP.Location = new System.Drawing.Point(181, 513);
+            this.lbGP.Name = "lbGP";
+            this.lbGP.Size = new System.Drawing.Size(102, 13);
+            this.lbGP.TabIndex = 17;
+            this.lbGP.Text = "GAMES PLAYED";
             // 
-            // label3
+            // lbGOALS
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(290, 513);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "GOALS";
+            this.lbGOALS.AutoSize = true;
+            this.lbGOALS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGOALS.Location = new System.Drawing.Point(290, 513);
+            this.lbGOALS.Name = "lbGOALS";
+            this.lbGOALS.Size = new System.Drawing.Size(48, 13);
+            this.lbGOALS.TabIndex = 18;
+            this.lbGOALS.Text = "GOALS";
             // 
-            // label4
+            // lbASSISTS
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(375, 513);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "ASSISTS";
+            this.lbASSISTS.AutoSize = true;
+            this.lbASSISTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbASSISTS.Location = new System.Drawing.Point(375, 513);
+            this.lbASSISTS.Name = "lbASSISTS";
+            this.lbASSISTS.Size = new System.Drawing.Size(59, 13);
+            this.lbASSISTS.TabIndex = 19;
+            this.lbASSISTS.Text = "ASSISTS";
             // 
-            // label5
+            // lbPOINTS
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(457, 513);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "POINTS";
+            this.lbPOINTS.AutoSize = true;
+            this.lbPOINTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPOINTS.Location = new System.Drawing.Point(457, 513);
+            this.lbPOINTS.Name = "lbPOINTS";
+            this.lbPOINTS.Size = new System.Drawing.Size(53, 13);
+            this.lbPOINTS.TabIndex = 20;
+            this.lbPOINTS.Text = "POINTS";
             // 
-            // label6
+            // lbPM
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(547, 513);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "+/-";
+            this.lbPM.AutoSize = true;
+            this.lbPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPM.Location = new System.Drawing.Point(539, 513);
+            this.lbPM.Name = "lbPM";
+            this.lbPM.Size = new System.Drawing.Size(24, 13);
+            this.lbPM.TabIndex = 21;
+            this.lbPM.Text = "+/-";
             // 
-            // label7
+            // lbPPG
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(621, 513);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "PPG";
+            this.lbPPG.AutoSize = true;
+            this.lbPPG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPPG.Location = new System.Drawing.Point(621, 513);
+            this.lbPPG.Name = "lbPPG";
+            this.lbPPG.Size = new System.Drawing.Size(32, 13);
+            this.lbPPG.TabIndex = 22;
+            this.lbPPG.Text = "PPG";
             // 
-            // label8
+            // lbPPP
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(778, 513);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 13);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "PPP";
+            this.lbPPP.AutoSize = true;
+            this.lbPPP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPPP.Location = new System.Drawing.Point(778, 513);
+            this.lbPPP.Name = "lbPPP";
+            this.lbPPP.Size = new System.Drawing.Size(31, 13);
+            this.lbPPP.TabIndex = 23;
+            this.lbPPP.Text = "PPP";
             // 
-            // label9
+            // lbSHG
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(867, 513);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "SHG";
+            this.lbSHG.AutoSize = true;
+            this.lbSHG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSHG.Location = new System.Drawing.Point(867, 513);
+            this.lbSHG.Name = "lbSHG";
+            this.lbSHG.Size = new System.Drawing.Size(33, 13);
+            this.lbSHG.TabIndex = 24;
+            this.lbSHG.Text = "SHG";
             // 
-            // label10
+            // lbSHA
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(954, 513);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "SHA";
+            this.lbSHA.AutoSize = true;
+            this.lbSHA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSHA.Location = new System.Drawing.Point(954, 513);
+            this.lbSHA.Name = "lbSHA";
+            this.lbSHA.Size = new System.Drawing.Size(32, 13);
+            this.lbSHA.TabIndex = 25;
+            this.lbSHA.Text = "SHA";
             // 
-            // label11
+            // lbOT
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1032, 513);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 13);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "OT";
+            this.lbOT.AutoSize = true;
+            this.lbOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOT.Location = new System.Drawing.Point(1032, 513);
+            this.lbOT.Name = "lbOT";
+            this.lbOT.Size = new System.Drawing.Size(24, 13);
+            this.lbOT.TabIndex = 26;
+            this.lbOT.Text = "OT";
             // 
-            // label12
+            // lbGW
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1105, 513);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 13);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "GW";
+            this.lbGW.AutoSize = true;
+            this.lbGW.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGW.Location = new System.Drawing.Point(1105, 513);
+            this.lbGW.Name = "lbGW";
+            this.lbGW.Size = new System.Drawing.Size(28, 13);
+            this.lbGW.TabIndex = 27;
+            this.lbGW.Text = "GW";
             // 
             // lbGPAVG
             // 
@@ -1120,15 +1121,15 @@
             this.lbPPAAVG.TabIndex = 106;
             this.lbPPAAVG.Text = "AVG: ";
             // 
-            // label20
+            // lbPPA
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(697, 513);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(31, 13);
-            this.label20.TabIndex = 105;
-            this.label20.Text = "PPA";
+            this.lbPPA.AutoSize = true;
+            this.lbPPA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPPA.Location = new System.Drawing.Point(697, 513);
+            this.lbPPA.Name = "lbPPA";
+            this.lbPPA.Size = new System.Drawing.Size(31, 13);
+            this.lbPPA.TabIndex = 105;
+            this.lbPPA.Text = "PPA";
             // 
             // lbTOTAL2009
             // 
@@ -1193,15 +1194,15 @@
             this.lbTOTALAVG.TabIndex = 114;
             this.lbTOTALAVG.Text = "AVG: ";
             // 
-            // label21
+            // lbTOTAL
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(1188, 513);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(47, 13);
-            this.label21.TabIndex = 113;
-            this.label21.Text = "TOTAL";
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.Location = new System.Drawing.Point(1188, 513);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(47, 13);
+            this.lbTOTAL.TabIndex = 113;
+            this.lbTOTAL.Text = "TOTAL";
             // 
             // lbSigned
             // 
@@ -1244,11 +1245,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.rbGoalie);
+            this.tabPage1.Controls.Add(this.rbPlayer);
             this.tabPage1.Controls.Add(this.tbSearch);
             this.tabPage1.Controls.Add(this.btSigned);
             this.tabPage1.Controls.Add(this.dgPlayer);
             this.tabPage1.Controls.Add(this.btUpdate);
-            this.tabPage1.Controls.Add(this.chGoalie);
             this.tabPage1.Controls.Add(this.chDefense);
             this.tabPage1.Controls.Add(this.chRight);
             this.tabPage1.Controls.Add(this.chCenter);
@@ -1263,15 +1265,15 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(579, 0);
+            this.tbSearch.Location = new System.Drawing.Point(640, 4);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(238, 20);
+            this.tbSearch.Size = new System.Drawing.Size(392, 20);
             this.tbSearch.TabIndex = 133;
             this.tbSearch.Leave += new System.EventHandler(this.tbSearch_Leave);
             // 
             // btSigned
             // 
-            this.btSigned.Location = new System.Drawing.Point(447, 1);
+            this.btSigned.Location = new System.Drawing.Point(508, 2);
             this.btSigned.Name = "btSigned";
             this.btSigned.Size = new System.Drawing.Size(126, 23);
             this.btSigned.TabIndex = 132;
@@ -1308,23 +1310,13 @@
             // 
             // btUpdate
             // 
-            this.btUpdate.Location = new System.Drawing.Point(366, 1);
+            this.btUpdate.Location = new System.Drawing.Point(427, 3);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(75, 23);
             this.btUpdate.TabIndex = 130;
             this.btUpdate.Text = "Update";
             this.btUpdate.UseVisualStyleBackColor = true;
             this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
-            // 
-            // chGoalie
-            // 
-            this.chGoalie.AutoSize = true;
-            this.chGoalie.Location = new System.Drawing.Point(304, 7);
-            this.chGoalie.Name = "chGoalie";
-            this.chGoalie.Size = new System.Drawing.Size(56, 17);
-            this.chGoalie.TabIndex = 129;
-            this.chGoalie.Text = "Goalie";
-            this.chGoalie.UseVisualStyleBackColor = true;
             // 
             // chDefense
             // 
@@ -1410,6 +1402,30 @@
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
+            // rbPlayer
+            // 
+            this.rbPlayer.AutoSize = true;
+            this.rbPlayer.Checked = true;
+            this.rbPlayer.Location = new System.Drawing.Point(304, 6);
+            this.rbPlayer.Name = "rbPlayer";
+            this.rbPlayer.Size = new System.Drawing.Size(59, 17);
+            this.rbPlayer.TabIndex = 134;
+            this.rbPlayer.TabStop = true;
+            this.rbPlayer.Text = "Players";
+            this.rbPlayer.UseVisualStyleBackColor = true;
+            this.rbPlayer.CheckedChanged += new System.EventHandler(this.rbPlayer_CheckedChanged);
+            // 
+            // rbGoalie
+            // 
+            this.rbGoalie.AutoSize = true;
+            this.rbGoalie.Location = new System.Drawing.Point(366, 6);
+            this.rbGoalie.Name = "rbGoalie";
+            this.rbGoalie.Size = new System.Drawing.Size(60, 17);
+            this.rbGoalie.TabIndex = 135;
+            this.rbGoalie.Text = "Goalies";
+            this.rbGoalie.UseVisualStyleBackColor = true;
+            this.rbGoalie.CheckedChanged += new System.EventHandler(this.rbGoalie_CheckedChanged);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1426,7 +1442,7 @@
             this.Controls.Add(this.lbTOTAL2013);
             this.Controls.Add(this.lbTOTAL2014);
             this.Controls.Add(this.lbTOTALAVG);
-            this.Controls.Add(this.label21);
+            this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.lbPPA2009);
             this.Controls.Add(this.lbPPA2010);
             this.Controls.Add(this.lbPPA2011);
@@ -1434,7 +1450,7 @@
             this.Controls.Add(this.lbPPA2013);
             this.Controls.Add(this.lbPPA2014);
             this.Controls.Add(this.lbPPAAVG);
-            this.Controls.Add(this.label20);
+            this.Controls.Add(this.lbPPA);
             this.Controls.Add(this.lbGW2009);
             this.Controls.Add(this.lbGW2010);
             this.Controls.Add(this.lbGW2011);
@@ -1512,17 +1528,17 @@
             this.Controls.Add(this.lbGP2013);
             this.Controls.Add(this.lbGP2014);
             this.Controls.Add(this.lbGPAVG);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbGW);
+            this.Controls.Add(this.lbOT);
+            this.Controls.Add(this.lbSHA);
+            this.Controls.Add(this.lbSHG);
+            this.Controls.Add(this.lbPPP);
+            this.Controls.Add(this.lbPPG);
+            this.Controls.Add(this.lbPM);
+            this.Controls.Add(this.lbPOINTS);
+            this.Controls.Add(this.lbASSISTS);
+            this.Controls.Add(this.lbGOALS);
+            this.Controls.Add(this.lbGP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbShoot);
             this.Controls.Add(this.lbWeight);
@@ -1563,17 +1579,17 @@
         private System.Windows.Forms.Label lbHeight;
         private System.Windows.Forms.Label lbCountry;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbGP;
+        private System.Windows.Forms.Label lbGOALS;
+        private System.Windows.Forms.Label lbASSISTS;
+        private System.Windows.Forms.Label lbPOINTS;
+        private System.Windows.Forms.Label lbPM;
+        private System.Windows.Forms.Label lbPPG;
+        private System.Windows.Forms.Label lbPPP;
+        private System.Windows.Forms.Label lbSHG;
+        private System.Windows.Forms.Label lbSHA;
+        private System.Windows.Forms.Label lbOT;
+        private System.Windows.Forms.Label lbGW;
         private System.Windows.Forms.Label lbGPAVG;
         private System.Windows.Forms.Label lbGP2014;
         private System.Windows.Forms.Label lbGP2013;
@@ -1658,7 +1674,7 @@
         private System.Windows.Forms.Label lbPPA2013;
         private System.Windows.Forms.Label lbPPA2014;
         private System.Windows.Forms.Label lbPPAAVG;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lbPPA;
         private System.Windows.Forms.Label lbTOTAL2009;
         private System.Windows.Forms.Label lbTOTAL2010;
         private System.Windows.Forms.Label lbTOTAL2011;
@@ -1666,7 +1682,7 @@
         private System.Windows.Forms.Label lbTOTAL2013;
         private System.Windows.Forms.Label lbTOTAL2014;
         private System.Windows.Forms.Label lbTOTALAVG;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lbTOTAL;
         private System.Windows.Forms.ListBox lbSigned;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btRemove;
@@ -1676,7 +1692,6 @@
         private System.Windows.Forms.Button btSigned;
         private System.Windows.Forms.DataGridView dgPlayer;
         private System.Windows.Forms.Button btUpdate;
-        private System.Windows.Forms.CheckBox chGoalie;
         private System.Windows.Forms.CheckBox chDefense;
         private System.Windows.Forms.CheckBox chRight;
         private System.Windows.Forms.CheckBox chCenter;
@@ -1687,6 +1702,8 @@
         private System.Windows.Forms.ToolStripMenuItem addToWatchToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip cmWatch;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rbGoalie;
+        private System.Windows.Forms.RadioButton rbPlayer;
     }
 }
 
