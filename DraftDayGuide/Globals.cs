@@ -215,6 +215,22 @@ namespace DraftDayGuide
 
         }
 
+        private static void CarryStats(int[,] fromArray, int[,] toArray, int index, float d)
+        {
+            for (int i = 0; i < 10; i++)
+                toArray[index, i] = Convert.ToInt32(fromArray[index, i] / d);
+        }
+
+        private static void CarryGStats(double[,] fromArray, double[,] toArray, int index, float d)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 7 || i == 8)
+                    toArray[index, i] = fromArray[index, i];
+                toArray[index, i] = fromArray[index, i] / d;
+            }
+        }
+
         public static void LoadStats(string year)
         {
             xlInterface.init("stat2014.xls");
@@ -272,31 +288,33 @@ namespace DraftDayGuide
                     DataTable dp = xlInterface.DoQuery(sString);
                     int tempid = 0;
                     pi = 0;
+                    if (dp.Rows.Count == 0)
+                        CarryStats(Globals.STAT2014_ARRAY, Globals.STAT2013_ARRAY, pc, 1.7f);
                     foreach (DataRow drow in dp.Rows)
                     {
 
                         tempid = Convert.ToInt32(drow["games"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["goals"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["assists"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["points"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["plusminus"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["ppg"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["ppp"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["shg"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["shp"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["gw"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                         tempid = Convert.ToInt32(drow["ot"].ToString());
-                        Globals.STAT2013_ARRAY[pc, pi++] = tempid;
+                        Globals.STAT2013_ARRAY[pc, pi++] = Convert.ToInt32(tempid * 1.7);
                     }
                 }
                 Globals.FM_SPLASH.ChangeText("Loading: 2012 Stats . . . ");
@@ -313,6 +331,8 @@ namespace DraftDayGuide
                     DataTable dp = xlInterface.DoQuery(sString);
                     int tempid = 0;
                     pi = 0;
+                    if (dp.Rows.Count == 0)
+                        CarryStats(Globals.STAT2013_ARRAY, Globals.STAT2012_ARRAY, pc, 1.0f);
                     foreach (DataRow drow in dp.Rows)
                     {
 
@@ -355,6 +375,8 @@ namespace DraftDayGuide
                     DataTable dp = xlInterface.DoQuery(sString);
                     int tempid = 0;
                     pi = 0;
+                    if (dp.Rows.Count == 0)
+                        CarryStats(Globals.STAT2012_ARRAY, Globals.STAT2011_ARRAY, pc, 1.0f);
                     foreach (DataRow drow in dp.Rows)
                     {
 
@@ -396,6 +418,8 @@ namespace DraftDayGuide
                     DataTable dp = xlInterface.DoQuery(sString);
                     int tempid = 0;
                     pi = 0;
+                    if (dp.Rows.Count == 0)
+                        CarryStats(Globals.STAT2011_ARRAY, Globals.STAT2010_ARRAY, pc, 1.0f);
                     foreach (DataRow drow in dp.Rows)
                     {
 
@@ -437,6 +461,8 @@ namespace DraftDayGuide
                     DataTable dp = xlInterface.DoQuery(sString);
                     int tempid = 0;
                     pi = 0;
+                    if (dp.Rows.Count == 0)
+                        CarryStats(Globals.STAT2010_ARRAY, Globals.STAT2009_ARRAY, pc, 1.0f);
                     foreach (DataRow drow in dp.Rows)
                     {
 
@@ -477,7 +503,7 @@ namespace DraftDayGuide
             xlList = new List<xlData>();
             string sString = "";
             int pCount = Globals.GOALIE_ARRAY.GetLength(0);
-            Globals.GSTAT2014_ARRAY = new double[pCount, 11];
+            Globals.GSTAT2014_ARRAY = new double[pCount, 12];
             for (int pc = 0; pc < pCount; pc++)
             {
                 sString = "select * from [Sheet1$] where player = '";
@@ -489,8 +515,6 @@ namespace DraftDayGuide
                 foreach (DataRow drow in dp.Rows)
                 {
 
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
                     Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
@@ -503,6 +527,9 @@ namespace DraftDayGuide
                     Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
                     Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
+
+                    Globals.GSTAT2014_ARRAY[pc, pi++] = Globals.GSTAT2014_ARRAY[pc, 4] - Globals.GSTAT2014_ARRAY[pc, 5];
+
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());
@@ -510,7 +537,7 @@ namespace DraftDayGuide
                     tempid = Convert.ToDouble(drow["so"].ToString());
                     Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToInt32(drow["assists"].ToString());
-                    Globals.GSTAT2014_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2014_ARRAY[pc, pi++] = tempid; 
                 }
             }
 
@@ -519,7 +546,7 @@ namespace DraftDayGuide
             xlList = new List<xlData>();
             sString = "";
             pCount = Globals.GOALIE_ARRAY.GetLength(0);
-            Globals.GSTAT2013_ARRAY = new double[pCount, 11];
+            Globals.GSTAT2013_ARRAY = new double[pCount, 12];
             for (int pc = 0; pc < pCount; pc++)
             {
                 sString = "select * from [Sheet1$] where player = '";
@@ -527,32 +554,35 @@ namespace DraftDayGuide
                 sString += "'";
                 DataTable dp = xlInterface.DoQuery(sString);
                 double tempid = 0;
-                pi = 0;
+                pi = 0; 
+                if (dp.Rows.Count == 0)
+                    CarryGStats(Globals.GSTAT2014_ARRAY, Globals.GSTAT2013_ARRAY, pc, 1.7f);
+
                 foreach (DataRow drow in dp.Rows)
                 {
-
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToDouble(drow["loss"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToDouble(drow["ot"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToDouble(drow["sa"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
+
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = Globals.GSTAT2013_ARRAY[pc, 4] - Globals.GSTAT2013_ARRAY[pc, 5];
+                    
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());
                     Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["so"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                     tempid = Convert.ToInt32(drow["assists"].ToString());
-                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid;
+                    Globals.GSTAT2013_ARRAY[pc, pi++] = tempid * 1.7;
                 }
             }
 
@@ -569,12 +599,12 @@ namespace DraftDayGuide
                 sString += "'";
                 DataTable dp = xlInterface.DoQuery(sString);
                 double tempid = 0;
-                pi = 0;
+                pi = 0; 
+                if (dp.Rows.Count == 0)
+                    CarryGStats(Globals.GSTAT2013_ARRAY, Globals.GSTAT2012_ARRAY, pc, 1.0f);
                 foreach (DataRow drow in dp.Rows)
                 {
 
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2012_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
                     Globals.GSTAT2012_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
@@ -587,6 +617,9 @@ namespace DraftDayGuide
                     Globals.GSTAT2012_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
                     Globals.GSTAT2012_ARRAY[pc, pi++] = tempid;
+
+                    Globals.GSTAT2012_ARRAY[pc, pi++] = Globals.GSTAT2012_ARRAY[pc, 4] - Globals.GSTAT2012_ARRAY[pc, 5];
+
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2012_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());
@@ -603,7 +636,7 @@ namespace DraftDayGuide
             xlList = new List<xlData>();
             sString = "";
             pCount = Globals.GOALIE_ARRAY.GetLength(0);
-            Globals.GSTAT2011_ARRAY = new double[pCount, 11];
+            Globals.GSTAT2011_ARRAY = new double[pCount, 12];
             for (int pc = 0; pc < pCount; pc++)
             {
                 sString = "select * from [Sheet1$] where player = '";
@@ -612,11 +645,11 @@ namespace DraftDayGuide
                 DataTable dp = xlInterface.DoQuery(sString);
                 double tempid = 0;
                 pi = 0;
+                if (dp.Rows.Count == 0)
+                    CarryGStats(Globals.GSTAT2012_ARRAY, Globals.GSTAT2011_ARRAY, pc, 1.0f);
                 foreach (DataRow drow in dp.Rows)
                 {
 
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2011_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
                     Globals.GSTAT2011_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
@@ -629,6 +662,9 @@ namespace DraftDayGuide
                     Globals.GSTAT2011_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
                     Globals.GSTAT2011_ARRAY[pc, pi++] = tempid;
+
+                    Globals.GSTAT2011_ARRAY[pc, pi++] = Globals.GSTAT2011_ARRAY[pc, 4] - Globals.GSTAT2011_ARRAY[pc, 5];
+
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2011_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());
@@ -645,7 +681,7 @@ namespace DraftDayGuide
             xlList = new List<xlData>();
             sString = "";
             pCount = Globals.GOALIE_ARRAY.GetLength(0);
-            Globals.GSTAT2010_ARRAY = new double[pCount, 11];
+            Globals.GSTAT2010_ARRAY = new double[pCount, 12];
             for (int pc = 0; pc < pCount; pc++)
             {
                 sString = "select * from [Sheet1$] where player = '";
@@ -654,11 +690,11 @@ namespace DraftDayGuide
                 DataTable dp = xlInterface.DoQuery(sString);
                 double tempid = 0;
                 pi = 0;
+                if (dp.Rows.Count == 0)
+                    CarryGStats(Globals.GSTAT2011_ARRAY, Globals.GSTAT2010_ARRAY, pc, 1.0f);
                 foreach (DataRow drow in dp.Rows)
                 {
 
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2010_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
                     Globals.GSTAT2010_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
@@ -671,6 +707,9 @@ namespace DraftDayGuide
                     Globals.GSTAT2010_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
                     Globals.GSTAT2010_ARRAY[pc, pi++] = tempid;
+
+                    Globals.GSTAT2010_ARRAY[pc, pi++] = Globals.GSTAT2010_ARRAY[pc, 4] - Globals.GSTAT2010_ARRAY[pc, 5];
+
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2010_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());
@@ -687,7 +726,7 @@ namespace DraftDayGuide
             xlList = new List<xlData>();
             sString = "";
             pCount = Globals.GOALIE_ARRAY.GetLength(0);
-            Globals.GSTAT2009_ARRAY = new double[pCount, 11];
+            Globals.GSTAT2009_ARRAY = new double[pCount, 12];
             for (int pc = 0; pc < pCount; pc++)
             {
                 sString = "select * from [Sheet1$] where player = '";
@@ -696,11 +735,11 @@ namespace DraftDayGuide
                 DataTable dp = xlInterface.DoQuery(sString);
                 double tempid = 0;
                 pi = 0;
+                if (dp.Rows.Count == 0)
+                    CarryGStats(Globals.GSTAT2010_ARRAY, Globals.GSTAT2009_ARRAY, pc, 1.0f);
                 foreach (DataRow drow in dp.Rows)
                 {
 
-                    tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["starts"].ToString());
                     Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["wins"].ToString());
@@ -713,6 +752,9 @@ namespace DraftDayGuide
                     Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["ga"].ToString());
                     Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
+
+                    Globals.GSTAT2009_ARRAY[pc, pi++] = Globals.GSTAT2009_ARRAY[pc, 4] - Globals.GSTAT2009_ARRAY[pc, 5];
+
                     tempid = Convert.ToDouble(drow["goalsavg"].ToString());
                     Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
                     tempid = Convert.ToDouble(drow["svp"].ToString());

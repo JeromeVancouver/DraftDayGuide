@@ -18,9 +18,9 @@ namespace DraftDayGuide
         int avggp, avgg, avga, avgp, avgplus, avgppg, avgppp, avgppa, avgshg, avgsha, avggw, avgot;
         int curgp, curg, cura, curp, curplus, curppg, curppp, curshg, curshp, curgw, curot;
 
-        double goalgp2014, goals2014, goalw2014, goall2014, goalot2014, goalsa2014, goalga2014, goalsp2014, goalso2014, goala2014;
-        double goalgpAVG, goalsAVG, goalwAVG, goallAVG, goalotAVG, goalsaAVG, goalgaAVG, goalspAVG, goalsoAVG, goalaAVG;
-        double goalgpCUR, goalsCUR, goalwCUR, goallCUR, goalotCUR, goalsaCUR, goalgaCUR, goalspCUR, goalsoCUR, goalaCUR;
+        double goals2014, goalw2014, goall2014, goalot2014, goalsa2014, goalga2014, goalsaves2014, goalgaa2014, goalsp2014, goalso2014, goala2014;
+        double goalsAVG, goalwAVG, goallAVG, goalotAVG, goalsaAVG, goalgaAVG, goalsavesAVG, goalgaaAVG, goalspAVG, goalsoAVG, goalaAVG;
+        double goalsCUR, goalwCUR, goallCUR, goalotCUR, goalsaCUR, goalgaCUR, goalsavesCUR, goalgaaCUR, goalspCUR, goalsoCUR, goalaCUR;
 
         public fmMain()
         {
@@ -53,16 +53,16 @@ namespace DraftDayGuide
         }
 
 
-
         private void AddToGAvg()
         {
-            goalgpAVG += goalgpCUR;
             goalsAVG += goalsCUR;
             goalwAVG += goalwCUR;
             goallAVG += goallCUR;
             goalotAVG += goalotCUR;
             goalsaAVG += goalsaCUR;
             goalgaAVG += goalgaCUR;
+            goalsavesAVG += goalsaCUR;
+            goalgaaAVG += goalgaaCUR;
             goalspAVG += goalspCUR;
             goalsoAVG += goalsoCUR;
             goalaAVG += goalaCUR;
@@ -72,80 +72,98 @@ namespace DraftDayGuide
         {
             MySqlDataReader rdr = null;
             int i = 0;
-            goalgpCUR = goalgpAVG = goalgp2014 = Globals.GSTAT2014_ARRAY[id, i++];
             goalsCUR = goalsAVG = goals2014 = Globals.GSTAT2014_ARRAY[id, i++];
             goalwCUR = goalwAVG = goalw2014 = Globals.GSTAT2014_ARRAY[id, i++];
             goallCUR = goallAVG = goall2014 = Globals.GSTAT2014_ARRAY[id, i++];
             goalotCUR = goalotAVG = goalot2014 = Globals.GSTAT2014_ARRAY[id, i++];
-            goalsaCUR = goalsaAVG = goalsa2014 = Globals.STAT2014_ARRAY[id, i++];
-            goalgaCUR = goalgaAVG = goalga2014 = Globals.STAT2014_ARRAY[id, i++];
-            goalspCUR = goalspAVG = goalsp2014 = Globals.STAT2014_ARRAY[id, i++];
-            goalsoCUR = goalsoAVG = goalso2014 = Globals.STAT2014_ARRAY[id, i++];
-            goalaCUR = goalaAVG = goala2014 = Globals.STAT2014_ARRAY[id, i++];
+            goalsaCUR = goalsaAVG = goalsa2014 = Globals.GSTAT2014_ARRAY[id, i++];
+            goalgaCUR = goalgaAVG = goalga2014 = Globals.GSTAT2014_ARRAY[id, i++];
+
+            goalsavesCUR = goalsavesAVG = goalsaves2014 = Globals.GSTAT2014_ARRAY[id, i++];
+            goalgaaCUR = goalgaaAVG = goalgaa2014 = Globals.GSTAT2014_ARRAY[id, i++];
+
+            goalspCUR = goalspAVG = goalsp2014 = Globals.GSTAT2014_ARRAY[id, i++];
+            goalsoCUR = goalsoAVG = goalso2014 = Globals.GSTAT2014_ARRAY[id, i++];
+            goalaCUR = goalaAVG = goala2014 = Globals.GSTAT2014_ARRAY[id, i++];
 
             i = 0;
-            goalgpCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalsCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalwCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goallCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalotCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalsaCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalgaCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
-            goalspCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalsoCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            goalaCUR = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
+            goalsCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalwCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goallCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalotCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalsaCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalgaCUR = Globals.GSTAT2013_ARRAY[id, i++];
+
+            goalsavesCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalgaaCUR = Globals.GSTAT2013_ARRAY[id, i++];
+
+            goalspCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalsoCUR = Globals.GSTAT2013_ARRAY[id, i++];
+            goalaCUR = Globals.GSTAT2013_ARRAY[id, i++];
             AddToGAvg();
 
             i = 0;
-            goalgpCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalsCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalwCUR = Globals.STAT2012_ARRAY[id, i++];
-            goallCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalotCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalsaCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalgaCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalspCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalsoCUR = Globals.STAT2012_ARRAY[id, i++];
-            goalaCUR = Globals.STAT2012_ARRAY[id, i++];
+            goalsCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalwCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goallCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalotCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalsaCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalgaCUR = Globals.GSTAT2012_ARRAY[id, i++];
+
+            goalsavesCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalgaaCUR = Globals.GSTAT2012_ARRAY[id, i++];
+
+            goalspCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalsoCUR = Globals.GSTAT2012_ARRAY[id, i++];
+            goalaCUR = Globals.GSTAT2012_ARRAY[id, i++];
             AddToGAvg();
 
             i = 0;
-            goalgpCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalsCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalwCUR = Globals.STAT2011_ARRAY[id, i++];
-            goallCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalotCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalsaCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalgaCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalspCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalsoCUR = Globals.STAT2011_ARRAY[id, i++];
-            goalaCUR = Globals.STAT2011_ARRAY[id, i++];
+            goalsCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalwCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goallCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalotCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalsaCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalgaCUR = Globals.GSTAT2011_ARRAY[id, i++];
+
+            goalsavesCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalgaaCUR = Globals.GSTAT2011_ARRAY[id, i++];
+
+            goalspCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalsoCUR = Globals.GSTAT2011_ARRAY[id, i++];
+            goalaCUR = Globals.GSTAT2011_ARRAY[id, i++];
             AddToGAvg();
 
             i = 0;
-            goalgpCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalsCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalwCUR = Globals.STAT2010_ARRAY[id, i++];
-            goallCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalotCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalsaCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalgaCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalspCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalsoCUR = Globals.STAT2010_ARRAY[id, i++];
-            goalaCUR = Globals.STAT2010_ARRAY[id, i++];
+            goalsCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalwCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goallCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalotCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalsaCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalgaCUR = Globals.GSTAT2010_ARRAY[id, i++];
+
+            goalsavesCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalgaaCUR = Globals.GSTAT2010_ARRAY[id, i++];
+
+            goalspCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalsoCUR = Globals.GSTAT2010_ARRAY[id, i++];
+            goalaCUR = Globals.GSTAT2010_ARRAY[id, i++];
             AddToGAvg();
 
             i = 0;
-            goalgpCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalsCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalwCUR = Globals.STAT2009_ARRAY[id, i++];
-            goallCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalotCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalsaCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalgaCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalspCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalsoCUR = Globals.STAT2009_ARRAY[id, i++];
-            goalaCUR = Globals.STAT2009_ARRAY[id, i++];
+            goalsCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalwCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goallCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalotCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalsaCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalgaCUR = Globals.GSTAT2009_ARRAY[id, i++];
+
+            goalsavesCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalgaaCUR = Globals.GSTAT2009_ARRAY[id, i++];
+
+            goalspCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalsoCUR = Globals.GSTAT2009_ARRAY[id, i++];
+            goalaCUR = Globals.GSTAT2009_ARRAY[id, i++];
             AddToGAvg();
 
         }
@@ -170,17 +188,17 @@ namespace DraftDayGuide
             curot = avgot = ot2014 = Globals.STAT2014_ARRAY[id, i++];
 
             i = 0;
-            curgp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            cura = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curplus = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curppg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curppp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curshg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curshp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curgw = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
-            curot = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++] * 1.7);
+            curgp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            cura = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curplus = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curppg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curppp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curshg = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curshp = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curgw = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
+            curot = Convert.ToInt32(Globals.STAT2013_ARRAY[id, i++]);
             AddToAvg();
 
             i = 0;
@@ -406,32 +424,29 @@ namespace DraftDayGuide
         private void UpdateGoalie()
         {
 
-
             ClearPartGrid();
             dgPlayer.SortCompare += customSortCompare;
             AddColumn("Player", 100, dgPlayer, true);
             AddColumn("Age", 25, dgPlayer, true);
-            AddColumn("2014 Games", 25, dgPlayer, false);
             AddColumn("2014 Starts", 40, dgPlayer, false);
             AddColumn("2014 Wins", 40, dgPlayer, false);
             AddColumn("2014 Loss", 40, dgPlayer, false);
             AddColumn("2014 OTL", 40, dgPlayer, false);
             AddColumn("2014 Shots", 40, dgPlayer, false);
             AddColumn("2014 GA", 40, dgPlayer, false);
-            AddColumn("2014 GAA", 40, dgPlayer, false);
             AddColumn("2014 Saves", 40, dgPlayer, false);
+            AddColumn("2014 GAA", 40, dgPlayer, false);
             AddColumn("2014 S%", 40, dgPlayer, false);
             AddColumn("2014 S/O", 40, dgPlayer, false);
             AddColumn("2014 Assists", 40, dgPlayer, false);
-            AddColumn("AVG Games", 25, dgPlayer, false);
             AddColumn("AVG Starts", 40, dgPlayer, false);
             AddColumn("AVG Wins", 40, dgPlayer, false);
             AddColumn("AVG Loss", 40, dgPlayer, false);
             AddColumn("AVG OTL", 40, dgPlayer, false);
             AddColumn("AVG Shots", 40, dgPlayer, false);
             AddColumn("AVG GA", 40, dgPlayer, false);
-            AddColumn("AVG GAA", 40, dgPlayer, false);
             AddColumn("AVG Saves", 40, dgPlayer, false);
+            AddColumn("AVG GAA", 40, dgPlayer, false);
             AddColumn("AVG S%", 40, dgPlayer, false);
             AddColumn("AVG S/O", 40, dgPlayer, false);
             AddColumn("AVG Assists", 40, dgPlayer, false);
@@ -444,21 +459,34 @@ namespace DraftDayGuide
             count = Globals.GOALIE_ARRAY.GetLength(0);
             for (int i = 0; i < count - 1; i++)
             {
-                id = Convert.ToInt32(Globals.PLAYER_ARRAY[i, 0]);
-                p = Globals.GOALIE_ARRAY[i, 1];
-                if (CheckSignedList(p))
-                    continue;
-                d = Globals.GOALIE_ARRAY[i, 2];
-                a = Globals.GOALIE_ARRAY[i, 3];
+                    id = Convert.ToInt32(Globals.PLAYER_ARRAY[i, 0]);
+                    p = Globals.GOALIE_ARRAY[i, 1];
+                    if (CheckSignedList(p))
+                        continue;
+                    d = Globals.GOALIE_ARRAY[i, 2];
+                    a = Globals.GOALIE_ARRAY[i, 3];
 
                     GetGStats(id);
 
-                    string[] row = { p, a, goalgp2014.ToString(), goals2014.ToString(), goalw2014.ToString(), goall2014.ToString(), goalot2014.ToString(), 
-                                       goalsa2014.ToString(), goalga2014.ToString(), "n/a", "n/a", goalsp2014.ToString(), goalso2014.ToString(), goala2014.ToString(),
-                                   Convert.ToString(goalgpAVG) , Convert.ToString(goalsAVG), Convert.ToString(goalwAVG), 
-                                   Convert.ToString(goallAVG), Convert.ToString(goalotAVG), Convert.ToString(goalsaAVG), 
-                                   Convert.ToString(goalgaAVG), "n/a", "na", 
-                                   Convert.ToString(goalspAVG), Convert.ToString(goalsoAVG), goalaCUR.ToString()};
+                    goalsAVG = goalsAVG / 6;
+                    goalwAVG = goalwAVG / 6;
+                    goallAVG = goallAVG / 6;
+                    goalotAVG = goalotAVG / 6;
+                    goalsaAVG = goalsaAVG / 6;
+                    goalgaAVG = goalgaAVG / 6;
+                    goalsavesAVG = goalsavesAVG / 6;
+                    goalgaaAVG = goalgaaAVG / 6;
+                    goalspAVG = goalspAVG / 6;
+                    goalsoAVG = goalsoAVG / 6;
+                    goalaCUR = goalaCUR / 6;
+
+
+                    string[] row = { p, a, goals2014.ToString(), goalw2014.ToString(), goall2014.ToString(), goalot2014.ToString(), 
+                                       goalsa2014.ToString(), goalga2014.ToString(), goalsaves2014.ToString(), goalgaa2014.ToString(), goalsp2014.ToString(), goalso2014.ToString(), goala2014.ToString(),
+                                   Convert.ToString(Convert.ToInt32(goalsAVG)), Convert.ToString(Convert.ToInt32(goalwAVG)), 
+                                   Convert.ToString(Convert.ToInt32(goallAVG)), Convert.ToString(Convert.ToInt32(goalotAVG)), Convert.ToString(Convert.ToInt32(goalsaAVG)), 
+                                   Convert.ToString(Convert.ToInt32(goalgaAVG)), Convert.ToString(Convert.ToInt32(goalsavesAVG)), Convert.ToString(goalgaaAVG),
+                                   Convert.ToString(goalspAVG), Convert.ToString(Convert.ToInt32(goalsoAVG)), Convert.ToInt32(goalaCUR).ToString()};
 
                     dgPlayer.Rows.Add(row);
                     int r = dgPlayer.RowCount - 2;
@@ -634,17 +662,17 @@ namespace DraftDayGuide
         {
 
             int index = 0;
-            curgp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            cura = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curplus = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curppg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curppp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curshg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curshp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curgw = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
-            curot = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++] * 1.7);
+            curgp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            cura = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curplus = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curppg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curppp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curshg = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curshp = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curgw = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
+            curot = Convert.ToInt32(Globals.STAT2013_ARRAY[pID, index++]);
 
             UpdateTextBox(lbGP2013, "2013: ", curgp.ToString());
             UpdateTextBox(lbG2013, "2013: ", curg.ToString());
@@ -751,23 +779,118 @@ namespace DraftDayGuide
 
         private void UpdateG2009(int pID)
         {
-
             UpdateCurGStats(Globals.GSTAT2009_ARRAY, pID);
 
-            UpdateTextBox(lbGP2009, "2009: ", goalgpCUR.ToString());
-            UpdateTextBox(lbG2009, "2009: ", goalsCUR.ToString());
-            UpdateTextBox(lbA2009, "2009: ", goalwCUR.ToString());
-            UpdateTextBox(lbP2009, "2009: ", goallCUR.ToString());
-            UpdateTextBox(lbPM2009, "2009: ", goalotCUR.ToString());
-            UpdateTextBox(lbPPG2009, "2009: ", goalsaCUR.ToString());
-            UpdateTextBox(lbPPA2009, "2009: ", goalgaCUR.ToString());
-            UpdateTextBox(lbPPP2009, "2009: ", goalspCUR.ToString());
-            UpdateTextBox(lbSHG2009, "2009: ", goalsoCUR.ToString());
-            UpdateTextBox(lbSHP2009, "2009: ", goalaCUR.ToString());
-            UpdateTextBox(lbGW2009, "2009: ", "n/a");
-            UpdateTextBox(lbOT2009, "2009: ", "n/a");
-            //int total = curg + cura + curp + curplus + curppg + curppp + (curppp - curppg) + curshg + (curshp - curshg) + curgw;
-            UpdateTextBox(lbTOTAL2009, "2009: ", "n/a");
+            UpdateTextBox(lbGP2009, "2009: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2009, "2009: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2009, "2009: ", goallCUR.ToString());
+            UpdateTextBox(lbP2009, "2009: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2009, "2009: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2009, "2009: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2009, "2009: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2009, "2009: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2009, "2009: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2009, "2009: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2009, "2009: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2009, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2009, "2009: ", total.ToString());
+        }
+
+        private void UpdateG2010(int pID)
+        {
+
+            UpdateCurGStats(Globals.GSTAT2010_ARRAY, pID);
+
+            UpdateTextBox(lbGP2010, "2010: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2010, "2010: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2010, "2010: ", goallCUR.ToString());
+            UpdateTextBox(lbP2010, "2010: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2010, "2010: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2010, "2010: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2010, "2010: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2010, "2010: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2010, "2010: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2010, "2010: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2010, "2010: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2010, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2010, "2010: ", total.ToString());
+        }
+
+        private void UpdateG2011(int pID)
+        {
+
+            UpdateCurGStats(Globals.GSTAT2011_ARRAY, pID);
+
+            UpdateTextBox(lbGP2011, "2011: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2011, "2011: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2011, "2011: ", goallCUR.ToString());
+            UpdateTextBox(lbP2011, "2011: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2011, "2011: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2011, "2011: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2011, "2011: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2011, "2011: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2011, "2011: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2011, "2011: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2011, "2011: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2011, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2011, "2011: ", total.ToString());
+        }
+
+
+        private void UpdateG2012(int pID)
+        {
+
+
+            UpdateCurGStats(Globals.GSTAT2012_ARRAY, pID);
+
+            UpdateTextBox(lbGP2012, "2012: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2012, "2012: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2012, "2012: ", goallCUR.ToString());
+            UpdateTextBox(lbP2012, "2012: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2012, "2012: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2012, "2012: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2012, "2012: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2012, "2012: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2012, "2012: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2012, "2012: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2012, "2012: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2012, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2012, "2012: ", total.ToString());
+        }
+
+        private void UpdateG2013(int pID)
+        {
+
+            UpdateCurGStats(Globals.GSTAT2013_ARRAY, pID);
+
+            UpdateTextBox(lbGP2013, "2013: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2013, "2013: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2013, "2013: ", goallCUR.ToString());
+            UpdateTextBox(lbP2013, "2013: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2013, "2013: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2013, "2013: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2013, "2013: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2013, "2013: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2013, "2013: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2013, "2013: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2013, "2013: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2013, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2013, "2013: ", total.ToString());
         }
 
         private void UpdateG2014(int pID)
@@ -775,64 +898,41 @@ namespace DraftDayGuide
 
             UpdateCurGStats(Globals.GSTAT2014_ARRAY, pID);
 
-            UpdateTextBox(lbGP2014, "2014: ", goalgpCUR.ToString());
-            UpdateTextBox(lbG2014, "2014: ", goalsCUR.ToString());
-            UpdateTextBox(lbA2014, "2014: ", goalwCUR.ToString());
-            UpdateTextBox(lbP2014, "2014: ", goallCUR.ToString());
-            UpdateTextBox(lbPM2014, "2014: ", goalotCUR.ToString());
-            UpdateTextBox(lbPPG2014, "2014: ", goalsaCUR.ToString());
-            UpdateTextBox(lbPPA2014, "2014: ", goalgaCUR.ToString());
-            UpdateTextBox(lbPPP2014, "2014: ", goalspCUR.ToString());
-            UpdateTextBox(lbSHG2014, "2014: ", goalsoCUR.ToString());
-            UpdateTextBox(lbSHP2014, "2014: ", goalaCUR.ToString());
-            UpdateTextBox(lbGW2014, "2014: ", "n/a");
-            UpdateTextBox(lbOT2014, "2014: ", "n/a");
-            //int total = curg + cura + curp + curplus + curppg + curppp + (curppp - curppg) + curshg + (curshp - curshg) + curgw;
-            UpdateTextBox(lbTOTAL2014, "2014: ", "n/a");
+            UpdateTextBox(lbGP2014, "2014: ", goalsCUR.ToString());
+            UpdateTextBox(lbG2014, "2014: ", goalwCUR.ToString());
+            UpdateTextBox(lbA2014, "2014: ", goallCUR.ToString());
+            UpdateTextBox(lbP2014, "2014: ", goalotCUR.ToString());
+            UpdateTextBox(lbPM2014, "2014: ", goalsaCUR.ToString());
+            UpdateTextBox(lbPPG2014, "2014: ", goalgaCUR.ToString());
+
+            UpdateTextBox(lbPPA2014, "2014: ", goalsavesCUR.ToString());
+            UpdateTextBox(lbPPP2014, "2014: ", goalgaaCUR.ToString());
+
+            UpdateTextBox(lbSHG2014, "2014: ", goalspCUR.ToString());
+            UpdateTextBox(lbSHP2014, "2014: ", goalsoCUR.ToString());
+            UpdateTextBox(lbOT2014, "2014: ", goalaCUR.ToString());
+            UpdateTextBox(lbGW2014, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTAL2014, "2014: ", total.ToString());
         }
 
         private void UpdateCurGStats(double[,] arr, int pID)
         {
 
             int index = 0;
-            goalgpCUR = arr[pID, index++];
             goalsCUR = arr[pID, index++];
             goalwCUR = arr[pID, index++];
             goallCUR = arr[pID, index++];
             goalotCUR = arr[pID, index++];
             goalsaCUR = arr[pID, index++];
             goalgaCUR = arr[pID, index++];
+
+            goalsavesCUR = arr[pID, index++];
+            goalgaaCUR = arr[pID, index++];
+
             goalspCUR = arr[pID, index++];
             goalsoCUR = arr[pID, index++];
             goalaCUR = arr[pID, index++];
-
-            /*
-             * 
-             * double goalgpCUR, goalsCUR, goalwCUR, goallCUR, goalotCUR, goalsaCUR, goalgaCUR, goalspCUR, goalsoCUR, goalaCUR;
-
-                                tempid = Convert.ToDouble(drow["games"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["starts"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["wins"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["loss"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["ot"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["sa"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["ga"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["goalsavg"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["svp"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToDouble(drow["so"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-                    tempid = Convert.ToInt32(drow["assists"].ToString());
-                    Globals.GSTAT2009_ARRAY[pc, pi++] = tempid;
-             * */
         }
 
         private void UpdateCurStats(int[,] arr, int pID)
@@ -888,48 +988,50 @@ namespace DraftDayGuide
             lbHeight.Text = "HEIGHT: " + Globals.GOALIE_ARRAY[pID, index++];
             lbWeight.Text = "WEIGHT: " + Globals.GOALIE_ARRAY[pID, index++];
             lbShoot.Text = "SHOOTS: " + Globals.GOALIE_ARRAY[pID, index++];
+            goalsAVG = goalwAVG = goallAVG = goalotAVG = goalsaAVG = goalgaAVG = goalsavesAVG = goalgaaAVG = goalspAVG = goalsoAVG = goalaAVG = 0;
+        
 
-            //avggp = avgg = avga = avgp = avgplus = avgppg = avgppp = avgppa = avgshg = avgsha = avggw = avgot = 0;
             UpdateG2014(pID);
-            /*AddToAvg();
-            Update2013(pID);
-            AddToAvg();
-            Update2012(pID);
-            AddToAvg();
-            Update2011(pID);
-            AddToAvg();
-            Update2010(pID);
-            AddToAvg();*/
+            AddToGAvg();
+            UpdateG2013(pID);
+            AddToGAvg();
+            UpdateG2012(pID);
+            AddToGAvg();
+            UpdateG2011(pID);
+            AddToGAvg();
+            UpdateG2010(pID);
+            AddToGAvg();
             UpdateG2009(pID);
-            /*AddToAvg();
+            AddToGAvg();
 
-            avggp = avggp / 6;
-            avgg = avgg / 6;
-            avga = avga / 6;
-            avgp = avgp / 6;
-            avgplus = avgplus / 6;
-            avgppg = avgppg / 6;
-            avgppp = avgppp / 6;
-            avgppa = avgppa / 6;
-            avgshg = avgshg / 6;
-            avgsha = avgsha / 6;
-            avggw = avggw / 6;
-            avgot = avgot / 6;*/
+            goalsAVG = goalsAVG / 6;
+            goalwAVG = goalwAVG / 6;
+            goallAVG = goallAVG / 6;
+            goalotAVG = goalotAVG / 6;
+            goalsaAVG = goalsaAVG / 6;
+            goalgaAVG = goalgaAVG / 6;
+            goalsavesAVG = goalsavesAVG / 6;
+            goalgaaAVG = goalgaaAVG / 6;
+            goalspAVG = goalspAVG / 6;
+            goalsoAVG = goalsoAVG / 6;
+            goalaCUR = goalaCUR / 6;
 
-            /*UpdateTextBox(lbGPAVG, "AVG: ", avggp.ToString());
-            UpdateTextBox(lbGAVG, "AVG: ", avgg.ToString());
-            UpdateTextBox(lbAAVG, "AVG: ", avga.ToString());
-            UpdateTextBox(lbPAVG, "AVG: ", avgp.ToString());
-            UpdateTextBox(lbPMAVG, "AVG: ", avgplus.ToString());
-            UpdateTextBox(lbPPGAVG, "AVG: ", avgppg.ToString());
-            UpdateTextBox(lbPPAAVG, "AVG: ", (avgppp - avgppg).ToString());
-            UpdateTextBox(lbPPPAVG, "AVG: ", avgppp.ToString());
-            UpdateTextBox(lbSHGAVG, "AVG: ", avgshg.ToString());
-            UpdateTextBox(lbSHPAVG, "AVG: ", avgsha.ToString());
-            UpdateTextBox(lbGWAVG, "AVG: ", avggw.ToString());
-            UpdateTextBox(lbOTAVG, "AVG: ", avgot.ToString());
-            int total = avgg + avga + avgp + avgplus + avgppg + avgppp + (avgppp - avgppg) + avgshg + avgsha + avggw;
-            UpdateTextBox(lbGWAVG, "AVG: ", total.ToString());*/
+            UpdateTextBox(lbGPAVG, "AVG: ", Convert.ToInt32(goalsAVG).ToString());
+            UpdateTextBox(lbGAVG, "AVG: ", Convert.ToInt32(goalwAVG).ToString());
+            UpdateTextBox(lbAAVG, "AVG: ", Convert.ToInt32(goallAVG).ToString());
+            UpdateTextBox(lbPAVG, "AVG: ", Convert.ToInt32(goalotAVG).ToString());
+            UpdateTextBox(lbPMAVG, "AVG: ", Convert.ToInt32(goalsaAVG).ToString());
+            UpdateTextBox(lbPPGAVG, "AVG: ", Convert.ToInt32(goalgaAVG).ToString());
+            UpdateTextBox(lbPPAAVG, "AVG: ", Convert.ToInt32(goalsavesAVG).ToString());
+            UpdateTextBox(lbPPPAVG, "AVG: ", Math.Round(goalgaaAVG,2).ToString());
+            UpdateTextBox(lbSHGAVG, "AVG: ", Math.Round(goalspAVG,2).ToString());
+            UpdateTextBox(lbSHPAVG, "AVG: ", Convert.ToInt32(goalsoAVG).ToString());
+            UpdateTextBox(lbOTAVG, "AVG: ",Convert.ToInt32( goalaCUR).ToString());
+            UpdateTextBox(lbGWAVG, "", "");
+            int total = Convert.ToInt32(goalwCUR + goalsoCUR - goalgaaCUR + goalspCUR);
+            UpdateTextBox(lbTOTALAVG, "AVG: ", total.ToString());
+
+
         }
 
         public void UpdatePlayerInfo(string pName)
@@ -995,7 +1097,7 @@ namespace DraftDayGuide
             UpdateTextBox(lbGWAVG, "AVG: ", avggw.ToString());
             UpdateTextBox(lbOTAVG, "AVG: ", avgot.ToString());
             int total = avgg + avga + avgp + avgplus + avgppg + avgppp + (avgppp - avgppg) + avgshg + avgsha + avggw;
-            UpdateTextBox(lbGWAVG, "AVG: ", total.ToString());
+            UpdateTextBox(lbTOTALAVG, "AVG: ", total.ToString());
         }
 
         private void dgPlayer_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1063,7 +1165,10 @@ namespace DraftDayGuide
                     index = dgPlayer.SelectedCells[i].RowIndex + 1; 
                     if (index >= dgPlayer.Rows.Count - 1)
                         return;
-                    UpdatePlayerInfo(dgPlayer[0, index].Value.ToString());
+                    if(rbPlayer.Checked)
+                        UpdatePlayerInfo(dgPlayer[0, index].Value.ToString());
+                    else
+                        UpdateGoalieInfo(dgPlayer[0, index].Value.ToString());
                 }
             } 
             if (e.KeyData == Keys.Up)
@@ -1073,7 +1178,10 @@ namespace DraftDayGuide
                     index = dgPlayer.SelectedCells[i].RowIndex - 1;
                     if (index < 0)
                         return;
-                    UpdatePlayerInfo(dgPlayer[0, index].Value.ToString());
+                    if (rbPlayer.Checked)
+                        UpdatePlayerInfo(dgPlayer[0, index].Value.ToString());
+                    else
+                        UpdateGoalieInfo(dgPlayer[0, index].Value.ToString());
                 }
             }
         }
@@ -1213,6 +1321,7 @@ namespace DraftDayGuide
 
         private void TogglePlayerDetails()
         {
+            lbGP.Text = "GAMES PLAYED";
             lbGOALS.Text = "GOALS";
             lbASSISTS.Text = "ASSISTS";
             lbPOINTS.Text = "POINTS";
@@ -1224,22 +1333,38 @@ namespace DraftDayGuide
             lbSHA.Text = "SHA";
             lbOT.Text = "OT";
             lbGW.Text = "GW";
+            UpdateTextBox(lbGW2014, "2014:", "");
+            UpdateTextBox(lbGW2013, "2013:", "");
+            UpdateTextBox(lbGW2012, "2012:", "");
+            UpdateTextBox(lbGW2011, "2011:", "");
+            UpdateTextBox(lbGW2010, "2010:", "");
+            UpdateTextBox(lbGW2009, "2009:", "");
+            UpdateTextBox(lbGWAVG, "AVG:", "");
 
         }
 
         private void ToggleGoalieDetails()
         {
-            lbGOALS.Text = "STARTS";
-            lbASSISTS.Text = "WINS";
-            lbPOINTS.Text = "LOSSES";
-            lbPM.Text = "OT LOSS";
-            lbPPG.Text = "SHOTS";
-            lbPPA.Text = "GA";
+
+            lbGP.Text = "STARTS";
+            lbGOALS.Text = "WINS";
+            lbASSISTS.Text = "LOSSES";
+            lbPOINTS.Text = "OT LOSS";
+            lbPM.Text = "SHOTS";
+            lbPPG.Text = "GA";
+            lbPPA.Text = "SAVES";
             lbPPP.Text = "GAA";
-            lbSHG.Text = "SAVES";
-            lbSHA.Text = "S%";
+            lbSHG.Text = "S%";
+            lbSHA.Text = "S/O";
             lbOT.Text = "ASSISTS";
-            lbGW.Text = "S/O";
+            lbGW.Text = "";
+            UpdateTextBox(lbGW2014, "", "");
+            UpdateTextBox(lbGW2013, "", "");
+            UpdateTextBox(lbGW2012, "", "");
+            UpdateTextBox(lbGW2011, "", "");
+            UpdateTextBox(lbGW2010, "", "");
+            UpdateTextBox(lbGW2009, "", "");
+            UpdateTextBox(lbGWAVG, "", "");
 
         }
 
